@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <script src="https://kit.fontawesome.com/58b559da9d.js" crossorigin="anonymous"></script>
+    <title>Баян</title>
+    <style>
+        .accordion-wrapper {
+            margin: 0 auto;
+            padding: 24px;
+            background-color: #F3F6F9;
+            border: 1px solid #E7EBF0;
+            width: 800px;
+        }
+
+        .accordion-key-container {
+            background-color: #fff;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            min-height: 64px;
+            align-items: center;
+            padding: 0 16px
+        }
+
+        .accordion-key-wrapper {
+            margin: 0;
+        }
+
+        .expanded {
+            margin: 16px 0;
+        }
+
+        .expanded:first-child {
+            margin-top: 0;
+        }
+
+        .expanded:last-child {
+            margin-bottom: 0;
+        }
+
+        .accordion-key-header-wrapper {
+            display: flex;
+        }
+
+        .accordion-key-header-option {
+            width: 180px;
+        }
+
+        .accordion-key-container-main {
+            cursor: pointer;
+        }
+
+        .border-header-main {
+            border-bottom: 1px solid #E7EBF0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="accordion-wrapper">
+        <div class="accordion-key-wrapper">
+            <div class="accordion-key-container accordion-key-container-main border-header-main">
+                <div class="accordion-key-header-wrapper">
+                    <p class="accordion-key-header-option">
+                        General Settings
+                    </p>
+                    <p class="accordion-key-header-description">
+                        I am an accordion
+                    </p>
+                </div>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="accordion-key-container accordion-key-container-expanded hidden">
+                Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget maximus est, id
+                dignissim quam.
+            </div>
+        </div>
+        <div class="accordion-key-wrapper">
+            <div class="accordion-key-container accordion-key-container-main border-header-main">
+                <div class="accordion-key-header-wrapper">
+                    <p class="accordion-key-header-option">
+                        Users
+                    </p>
+                    <p class="accordion-key-header-description">
+                        You are currently not an owner
+                    </p>
+                </div>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="accordion-key-container accordion-key-container-expanded hidden">
+                Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in
+                elit. Pellentesque convallis laoreet laoreet.
+            </div>
+        </div>
+        <div class="accordion-key-wrapper">
+            <div class="accordion-key-container accordion-key-container-main border-header-main">
+                <div class="accordion-key-header-wrapper">
+                    <p class="accordion-key-header-option">
+                        Advanced settings
+                    </p>
+                    <p class="accordion-key-header-description">
+                        Filtering has been entirely disabled for whole web server
+                    </p>
+                </div>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="accordion-key-container accordion-key-container-expanded hidden">
+                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas
+                augue. Duis vel est augue.
+            </div>
+        </div>
+        <div class="accordion-key-wrapper">
+            <div class="accordion-key-container accordion-key-container-main border-header-main">
+                <div class="accordion-key-header-wrapper">
+                    <p class="accordion-key-header-option">
+                        Personal data
+                    </p>
+                    <div class="accordion-key-header-description">
+                    </div>
+                </div>
+                <i class="fa-solid fa-chevron-up"></i>
+            </div>
+            <div class="accordion-key-container accordion-key-container-expanded hidden">
+                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas
+                augue. Duis vel est augue.
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const accordionWrapper = document.querySelector('.accordion-wrapper');
+            // const accordionKeyWrapper = accordionWrapper.querySelectorAll('.accordion-key-wrapper');
+            let previousTarget;
+
+            function accordionSwitch(element) {
+                const arrow = element.querySelector('.fa-solid');
+                const parrentCurrentTarget = element.closest('.accordion-key-wrapper');
+                parrentCurrentTarget.querySelector('.accordion-key-container-expanded').classList.toggle('hidden');
+                parrentCurrentTarget.classList.toggle('expanded');
+                element.classList.toggle('border-header-main');
+
+                if (arrow.classList.contains('fa-chevron-up')) {
+                    arrow.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                } else {
+                    arrow.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                }
+            }
+
+            accordionWrapper.addEventListener('click', function (event) {
+                const target = event.target.closest('.accordion-key-wrapper');
+                const previousTarget = accordionWrapper.querySelector('.expanded');
+
+                if (target === null) {
+                    return;
+                }
+
+                if (previousTarget && previousTarget !== target) {
+                    accordionSwitch(previousTarget);
+                }
+
+                accordionSwitch(target);
+            })
+        });
+    </script>
+</body>
+
+</html>

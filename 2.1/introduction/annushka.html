@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Аннушка
+        const ticketNumber = prompt('Введите номер билета (6 цифр строго! Если у вас больше или меньше 6 цифр, ваш билет не участвует в лотерее!)');
+        const firstNumber = Math.floor(ticketNumber / 100000);
+        const secondNumber = Math.floor(ticketNumber / 10000) % 10;
+        const thirdNumber = Math.floor(ticketNumber / 1000) % 10;
+        const fourthNumber = Math.floor(ticketNumber / 100) % 10;
+        const fifthNumber = Math.floor(ticketNumber / 10) % 10;
+        const sixthNumber = ticketNumber % 10;
+        const moscowLucky = (firstNumber + secondNumber + thirdNumber === fourthNumber + fifthNumber + sixthNumber);
+        console.log('Ваш билет счастливый по Московской системе - ' + moscowLucky);
+        const piterLucky = (firstNumber + thirdNumber + fifthNumber === secondNumber + fourthNumber + sixthNumber);
+        console.log('Ваш билет счастливый по Питерской системе - ' + piterLucky);
+        console.log('У вас СУПЕР-БИЛЕТ - ' + (moscowLucky && piterLucky));
+    </script>
+</body>
+</html>

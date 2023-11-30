@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Qwerty</title>
+</head>
+<style>
+    .form-container {
+        margin: 100px auto;
+        text-align: center;
+    }
+
+    .small-password,
+    .error {
+        color: #f00;
+    }
+
+    .simple-good-password {
+        color: #00f;
+    }
+
+    .good-password {
+        color: #ff0;
+    }
+
+    .best-password {
+        color: #0f0;
+    }
+</style>
+
+<body>
+    <form class="form-container" action="">
+        <div>Проверка пароля на надежность</div>
+        <input class="password" type="password" name="visiblePassword">
+        <input class="checkbox" type="checkbox"> Показать пароль
+        <div class="status">Cлабый пароль</div>
+        <div class="length"></div>
+        <div class="hint hidden error">Введен некорректный символ! Используйте латинские буквы a-Z, цифры 0-9 и символы @#$%^&-+=;:({[\]})!?"</div>
+
+    </form>
+
+    <script>
+        const passwordInput = document.querySelector('.password');
+        const checkbox = document.querySelector('.checkbox');
+        const statusText = document.querySelector('.status');
+        const hintText = document.querySelector('.hint');
+        const length = document.querySelector('.length');
+
+        checkbox.addEventListener('input', function (event) {
+            event.target.checked ? passwordInput.type = 'text' : passwordInput.type = 'password';
+        });
+
+        passwordInput.addEventListener('input', function (event) {
+            let password = event.target.value;
+            statusText.className = 'status';
+            length.textContent = password.length;
+
+            const absenceCheck = Array.from(password).some(element => {
+                return !element.match(/[a-zA-Z0-9@#$%^&-+=;:({[\]})!?"]/);
+            });
+
+            if (absenceCheck) {
+                hintText.classList.remove('hidden');
+                statusText.classList.add('hidden');
+            } else {
+                hintText.classList.add('hidden');
+                statusText.classList.remove('hidden');
+            }
+
+            if (password.match(/^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&-+=;:({[\]})!?"])[a-zA-Z0-9@#$%^&-+=;:({[\]})!?"]{14,}$/)) {
+                statusText.classList.add('best-password');
+                statusText.textContent = 'Очень надежный пароль содержит все возможные сиволы a-Z, 0-9 и @#$%^&-+=;:({[\]})!?" и длиной больше 13 символов';
+                return;
+            }
+
+            if (password.length < 14) {
+                statusText.classList.add('small-password');
+                statusText.textContent = 'Простой пароль, содержит меньше 14 символов';
+                return;
+            }
+
+            if (password.match(/(^[0-9]+$)|(^[a-z]+$)|(^[A-Z]+$)|(?=.*[@#$%^&-+=;:({[\]})!?"]){14,}/)) {
+                statusText.classList.add('simple-good-password');
+                statusText.textContent = 'Простой пароль, содержит только один тип символов: 0-9 или a-z или A-Z, и больше 13 сиволов';
+                return;
+            }
+
+            if (password.match(/^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{14,}$|^(?=.*[a-z])(?=.*\d)[a-z0-9]{14,}$|^(?=.*[A-Z])(?=.*\d)[A-Z0-9]{14,}$|^(?=.*[a-z])(?=.*[@#$%^&-+=;:({[\]})!?"])[a-z@#$%^&-+=;:({[\]})!?"]{14,}$|^(?=.*[A-Z])(?=.*[@#$%^&-+=;:({[\]})!?"])[A-Z@#$%^&-+=;:({[\]})!?"]{14,}$|^(?=.*[0-9])(?=.*[@#$%^&-+=;:({[\]})!?"])[0-9@#$%^&-+=;:({[\]})!?"]{14,}$/)) {
+                statusText.classList.add('simple-good-password');
+                statusText.textContent = 'Хороший пароль, содержит следующие комбинации символов (a-Z); (a-z0-9); (A-Z0-9); (a-z@#$%^&-+=;:({[\]})!?"); (A-Z@#$%^&-+=;:({[\]})!?") или (0-9@#$%^&-+=;:({[\]})!?") и длинной больше 13 символов';
+                return;
+            }
+
+            if (password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{14,}$/)) {
+                statusText.classList.add('good-password');
+                statusText.textContent = 'Надежный пароль, содержит все типы символов a-zA-Z0-9 и длинной больше 13 символов';
+                return;
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <style>
+        .page {
+            position: relative;
+        }
+
+        .emoji {
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+    <title>Эмоджи ковчег</title>
+</head>
+
+<body class="page">
+    <script>
+        const emojis = ['😎', '👍', '💔', '🔔', '🔞'];
+        const page = document.querySelector('.page');
+
+        function showMeEmojis() {
+            const screenDimensions = [document.documentElement.clientWidth, document.documentElement.clientHeight];
+            
+            for (i = 0; i < emojis.length; i++) {
+                for (j = 0; j < 2; j++) {
+                    const emoji = document.createElement('div');
+                    emoji.classList.add('emoji');
+                    emoji.textContent = emojis[i];
+                    emoji.style.top = Math.random() * (screenDimensions[1] - 24) + 'px';
+                    emoji.style.left = Math.random() * (screenDimensions[0] - 24) + 'px';
+                    emoji.dataset.emojiNumber = i;
+                    page.appendChild(emoji);
+                }
+            }
+        }
+
+        showMeEmojis();
+
+        let previousEmoji = [];
+        let counter = 0;
+
+        page.addEventListener('mouseover', function ({ target }) {
+            if (target.dataset.emojiNumber === previousEmoji[0] && target !== previousEmoji[1]) {
+                target.classList.add('hidden');
+                previousEmoji[1].classList.add('hidden');
+                previousEmoji = [];
+                counter += 1;
+                if (counter === emojis.length) {
+                    counter = 0;
+                    location.reload();
+                }
+            } else {
+                previousEmoji[0] = target.dataset.emojiNumber;
+                previousEmoji[1] = target;
+            }
+        })
+
+    </script>
+</body>
+
+</html>

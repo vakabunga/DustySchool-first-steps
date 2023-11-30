@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сумма объектов</title>
+</head>
+<body>
+    <script>
+        const someObjectFirst = {
+            cool: 'yes',
+            value: 5,
+        }
+        const someObjectSecond = {
+            cool: 'no',
+            result: 15
+        }
+        const someObjectThird = {
+            cool: 'yes',
+            value: 5,
+        }
+        const someObjectFourth = {
+            text: 'no',
+            value: 15,
+        }
+
+        function sumOfObject(firstObject, secondObject) {
+            const resultObject = {};
+            const firstObjectKeys = Object.keys(firstObject);
+            const secondObjectKeys = Object.keys(secondObject);
+
+            for (const keyFirstObject in firstObject) {
+                if (secondObjectKeys.includes(keyFirstObject)) {
+                    resultObject[keyFirstObject] = firstObject[keyFirstObject] + secondObject[keyFirstObject];
+                    secondObjectKeys.splice(secondObjectKeys.indexOf(keyFirstObject), 1);
+                } else {
+                    resultObject[keyFirstObject] = firstObject[keyFirstObject];
+                }
+            }
+
+            for (let i = 0; i < secondObjectKeys.length; i++) {
+                resultObject[secondObjectKeys[i]] = secondObject[secondObjectKeys[i]];
+            }
+
+            return resultObject;
+        }
+
+        console.log(sumOfObject(someObjectFirst, someObjectSecond));
+        console.log(sumOfObject(someObjectThird, someObjectFourth));
+    </script>
+
+</body>
+</html>

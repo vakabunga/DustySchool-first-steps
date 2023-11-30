@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Максим очень любил бутерброды с плавленным сыром из микроволновки. Он заметил, что обычный бутерброд, если его положить в микроволновку,
+        let time = +prompt('Сколько секунд будем греть бутерброд?');
+
+        while (time < 1) {
+            time = +prompt('Сколько секунд будем греть будерброд?');
+        }
+
+        if (time < 100 && time >= 1) {
+            alert('Вкусность бутерброда равна ' + time + ' баллов!');
+        }
+
+        if (time >= 100 && time < 120) {
+            alert('Вкусность бутерброда равна 100 баллов!');
+        }
+
+        if (time >= 120) {
+            alert('Бутерброд испорчен. Вкусность 0 баллов!');
+        }
+    </script>
+</body>
+</html>

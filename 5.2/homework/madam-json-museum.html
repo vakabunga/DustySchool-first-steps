@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Музей мадам Джсон</title>
+    <style>
+        .exponat {
+            width: 50%;
+            cursor: pointer;
+        }
+
+        .gallery {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery"></div>
+    <script>
+        const gallery = document.querySelector('.gallery');
+
+        const image = document.createElement('img');
+        image.classList.add('exponat');
+        const description = document.createElement('p');
+
+        const galleryEnd = document.createElement('h3');
+        const button = document.createElement('button');
+        galleryEnd.textContent = 'Экспонаты закончились, начните сначала';
+        button.textContent = 'Продолжить';
+
+        let fileNumber = 0;
+
+        function generateURL() {
+            return `./museum/${fileNumber + 1}.json`;
+        }
+
+        button.addEventListener('click', () => {
+            location.reload();
+        });
+
+        image.addEventListener('click', (event) => {
+            fileNumber += 1;
+            getExponat(generateURL());
+        });
+
+        function getExponat(url) {
+            fetch(url)
+                .then(response => response.json())
+                .then((data) => {
+                    image.src = data.path;
+                    gallery.appendChild(image);
+                    gallery.appendChild(description);
+                    description.textContent = data.description;
+                })
+                .catch((error) => {
+                    gallery.textContent = '';
+                    gallery.appendChild(galleryEnd);
+                    gallery.appendChild(button);
+                });
+        }
+
+        getExponat(generateURL());
+    </script>
+</body>
+
+</html>

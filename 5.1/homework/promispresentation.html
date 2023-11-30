@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Промиспредставление</title>
+</head>
+
+<body>
+    <h1 class="greetings">Приветствую тебя, Гость</h1>
+    <form class="form hidden" action="none">
+        <label for="name">Введите имя, чтобы войти</label>
+        <input class="input" type="text" id="name" placeholder="Введите имя">
+        <button class="button">Войти</button>
+    </form>
+    <script>
+        const form = document.querySelector('.form');
+        const greetingsElement = document.querySelector('.greetings');
+        const input = document.querySelector('.input');
+        const button = document.querySelector('.button');
+        let userName = localStorage.getItem('userName');
+
+        function getUserName() {
+            if (userName !== null) {
+                return Promise.resolve(userName);
+            }
+
+            return new Promise((resolve, reject) => {
+                form.classList.remove('hidden');
+
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    localStorage.setItem('userName', input.value);
+                    resolve(localStorage.getItem('userName'));
+                });
+            });
+        }
+
+        getUserName()
+            .then((result) => {
+                greetingsElement.textContent = `Приветствую тебя, ${result}`;
+                form.classList.add('hidden');
+            });
+
+    </script>
+</body>
+
+</html>

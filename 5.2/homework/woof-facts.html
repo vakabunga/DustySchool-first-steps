@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Гав-факты</title>
+</head>
+<body>
+    <h2>Факты о собаках (English version)</h2>
+    <h3>Введите любое число и ровно столько интересных фактов о собаках вы получите!</h3>
+    <p>Или просто нажмите "Гав" и прочтите случайный факт</p>
+    <form class="form" action="submit">
+        <label for="number">
+            <input type="text" id="number" class="input" placeholder="Введите число">
+        </label>
+        <button class="button">Гав</button>
+    </form>
+    <div class="container"></div>
+
+    <script>
+        const form = document.querySelector('.form');
+        const input = document.querySelector('.input');
+        const button = document.querySelector('.button');
+        const container = document.querySelector('.container');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            container.textContent = '';
+            const factsNumber = input.value;
+            input.value = '';
+
+            fetch(`https://dog-api.kinduff.com/api/facts?number=${factsNumber}`)
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.facts.length === 1) {
+                        container.textContent = data.facts[0];
+                        return;
+                    }
+
+                    const list = document.createElement('ol');
+                    container.appendChild(list);
+
+                    for (let i = 0; i < data.facts.length; i++) {
+                        const fact = document.createElement('li');
+                        fact.textContent = data.facts[i];
+                        list.appendChild(fact);
+                    };
+                })
+                .catch(error => container.textContent = error);
+        });
+    </script>
+</body>
+</html>

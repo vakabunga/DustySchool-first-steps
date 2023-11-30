@@ -1,0 +1,24 @@
+.page {
+    width: 800px;
+    margin: 10px auto;
+}
+
+.text {
+    margin: 3px;
+}
+
+.game {
+    width: 600px;
+    margin: 30px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: #f00;
+}

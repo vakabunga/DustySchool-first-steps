@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <script src="https://kit.fontawesome.com/58b559da9d.js" crossorigin="anonymous"></script>
+    <title>Дело ясное, что дело тёмное</title>
+    <style>
+        .page {
+            position: relative;
+        }
+
+        .icon {
+            position: fixed;
+            right: 50px;
+            top: 20px;
+        }
+
+        .icon-moon {
+            right: 38px;
+        }
+
+        .text {
+            margin: 100px auto;
+            width: 1000px;
+            text-align: justify;
+        }
+
+        .slider {
+            margin: 4px auto;
+            height: 10px;
+            width: 16px;
+            border: 1px solid #1e3050;
+            border-radius: 10px;
+        }
+
+        .dark-theme {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .slider-dark-theme {
+            background: #fff;
+        }
+
+        .toggle-button {
+            position: fixed;
+            cursor: pointer;
+            right: 35px;
+            top: 18px;
+            width: 32px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body class="page">
+    <div class="toggle-button">
+        <div class="slider"></div>
+        <i class="icon fa-regular fa-sun"></i>
+        <i class="icon fa-solid fa-moon dark-theme hidden"></i>
+    </div>
+    <div class="text">
+        <p>Переключение между светлой и темной темами является одним из наиболее удобных способов настройки интерфейса
+            вашего устройства. С помощью этой функции вы можете выбрать ту тему, которая лучше всего соответствует
+            вашему настроению и окружающей обстановке.</p>
+        <p>Включение темной темы может помочь уменьшить нагрузку на глаза при работе в условиях слабого освещения или в
+            ночное время. Кроме того, темная тема может быть более привлекательной и стильной для тех, кто предпочитает
+            минимализм и простоту в дизайне.</p>
+        <p>Для переключения между светлой и темной темами на вашем устройстве можно использовать различные способы.
+            Например, на некоторых устройствах можно просто нажать на кнопку "Темная тема" или "Светлая тема", которая
+            обычно находится в меню настроек.
+            На других устройствах может потребоваться зайти в настройки дисплея и выбрать нужный вариант.</p>
+        <p>Независимо от того, как вы переключаете тему, это может значительно улучшить ваш опыт использования
+            устройства и сделать его более удобным и приятным.</p>
+        <p>(c) Текст придуман Алисой (yagpt)</p>
+    </div>
+
+    <script>
+        const mainPage = document.querySelector('.page');
+        const slider = document.querySelector('.slider');
+        const sunIcon = document.querySelector('.fa-sun');
+        const moonIcon = document.querySelector('.fa-moon');
+        const commonText = document.querySelector('.text');
+        const toggleButton = document.querySelector('.toggle-button');
+        let toggle = localStorage.getItem('light');
+
+        if (toggle === null) {
+            localStorage.setItem('light', true);
+        }
+
+        if (toggle === 'false') {
+            toggleTheme();
+        }
+
+        function toggleTheme() {
+            mainPage.classList.toggle('dark-theme');
+            slider.classList.toggle('slider-dark-theme');
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('icon-moon');
+            moonIcon.classList.toggle('hidden');
+            commonText.classList.toggle('dark-theme');
+            toggle ? localStorage.setItem('light', false) : localStorage.setItem('light', true);
+            toggle = !toggle;
+        }
+
+        toggleButton.addEventListener('click', toggleTheme);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Синдром вахтера</title>
+    <style>
+        .form {
+            margin: auto;
+            width: 200px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .input-frame {
+            display: block;
+            width: 139px;
+            margin: 10px auto;
+        }
+
+        .button {
+            display: block;
+            margin: 10px auto;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .status-form {
+            color: #ff0000;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome" class="welcome-form form hidden"></div>
+    <div id="form" class="form">
+        <input id="login" class="input-frame input-login" type="text" placeholder="Введите логин">
+        <input id="password" class="input-frame input-password" type="password" placeholder="Введите пароль">
+        <button id="enter" class="button enter-button">Войти</button>
+        <button id="register" class="button register-button">Зарегистрироваться</button>
+        <div id="status" class="status-form"></div>
+    </div> 
+    <script>
+        const form = document.getElementById('form');
+        const inputLogin = document.getElementById('login');
+        const inputPassword = document.getElementById('password');
+        const enterButton = document.getElementById('enter');
+        const registerButton = document.getElementById('register');
+        const welcomeForm = document.getElementById('welcome');
+        const statusForm = document.getElementById('status');
+        const listOfUsers = {};
+
+        registerButton.onclick = function () {
+            const users = Object.keys(listOfUsers);
+            statusForm.textContent = '';
+
+            if (users.includes(inputLogin.value)) {
+                statusForm.textContent = 'username already registered';
+                return;
+            }
+
+            if (inputLogin.value && inputPassword.value) {
+                listOfUsers[inputLogin.value] = inputPassword.value;
+                inputLogin.value = '';
+                inputPassword.value = '';
+                statusForm.textContent = 'You are successfully registered. Please login';
+            } else {
+                statusForm.textContent = 'Please fill in all the required fields';
+            }
+        }
+
+        enterButton.onclick = function () {
+            const users = Object.keys(listOfUsers);
+
+            if (users.includes(inputLogin.value) && listOfUsers[inputLogin.value] === inputPassword.value) {
+                welcomeForm.textContent = 'Hello ' + inputLogin.value + '!';
+                form.classList.add('hidden');
+                welcomeForm.classList.remove('hidden');
+            } else {
+                statusForm.textContent = 'You entered incorrect login or password';
+            }
+        }
+
+    </script>
+</body>
+</html>

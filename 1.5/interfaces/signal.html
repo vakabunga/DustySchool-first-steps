@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <title>Signal</title>
+    <style>
+        .page {
+            background-color: #f3f3f3;
+        }
+
+        .about {
+            min-width: 1250px;
+            max-width: 1600px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0 auto;
+        }
+
+        .about-header {
+            display: flex;
+            color: #151515;
+        }
+
+        .about-header-heading2 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.5;
+            align-self: center;
+            width: 700px;
+            flex-shrink: 0;
+        }
+
+        .about-header-paragraph {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 145px;
+        }
+
+        .about-header-text {
+            margin: 0;
+            margin-top: 31px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .about-header-text:first-child {
+            margin-top: 0;
+        }
+
+        .text-today {
+            margin: 80px 0 70px 0;
+            text-transform: uppercase;
+            font-size: 18px;
+            line-height: 1.5;
+            letter-spacing: 0.5em;
+            color: #868686;
+            text-align: center;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 30px;
+            backdrop-filter: blur(12px);
+            min-height: 270px;
+            width: 400px;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 60px;
+        }
+
+        .info-item-heading {
+            margin: 0;
+            color: #dc0000;
+            font-size: 70px;
+            line-height: 1.1;
+            font-weight: 600;
+        }
+
+        .info-item-text {
+            margin: 12px 0 0 0;
+            font-size: 20px;
+            line-height: 1.5;
+            color: #161616;
+        }
+    </style>
+</head>
+<body class="page">
+    <section class="about">
+        <header class="about-header">
+            <h2 class="about-header-heading2">Компания Signal работает на стыке технологий и творчества.</h2>
+            <div class="about-header-paragraph">
+                <p class="about-header-text">Агентство оказывает весь комплекс услуг по креативному и техническому обеспечению мероприятий.</p>
+                <p class="about-header-text">Наша главная задача в любом проекте – найти техническое решение для самых смелых идей заказчика и реализовать их.</p>
+            </div>
+        </header>
+        <p class="text-today">Сегодня Signal – это</p>
+        <div class="info">
+            <div class="info-item">
+                <h4 class="info-item-heading">1400</h4>
+                <p class="info-item-text">часов отснятого материала</p>
+            </div>
+            <div class="info-item">
+                <h4 class="info-item-heading">500</h4>
+                <p class="info-item-text">мероприятий по всей территории России</p>
+            </div>
+            <div class="info-item">
+                <h4 class="info-item-heading">17</h4>
+                <p class="info-item-text">видов спорта с нашим участием</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

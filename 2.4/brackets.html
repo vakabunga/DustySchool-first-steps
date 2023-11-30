@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Осторожно, скобки закрываются</title>
+</head>
+<body>
+    <!-- Пользователь вводит некоторый текст. Проверить, что скобки (), {}, [] в нем закрыты корректно, без нарушения вложенности.
+    Например:
+    ({}) // корректно
+    ({)} // некорректно, нарушена вложенность
+    [({}) // некорректно, не закрыта [
+    ({}]) // некорректно, нет открывающей [ перед ]
+    ({}[()]) // корректно -->
+    <script>
+        const bracketsString1 = '({}[()])';
+        const bracketsString2 = '({})';
+        const bracketsString3 = '({)}';
+        const bracketsString4 = '[({})';
+        const bracketsString5 = '({}])';
+        const bracketsString6 = '()[{()}]';
+
+        function checkBrackets(inputBracketsString) {
+            const openedBrackets = ['[', '{', '('];
+            const closedBrackets = [']', '}', ')'];
+            const bracketsStack = [];
+            const bracketsArray = Array.from(inputBracketsString);
+        
+            for (let i = 0; i < bracketsArray.length; i++) {
+                bracketsStack.push(bracketsArray[i]);
+                prevBracketIndex = bracketsStack.length - 2;
+                curBracketIndex = bracketsStack.length - 1;
+                
+                if (closedBrackets.includes(bracketsStack[curBracketIndex]) &&
+                    openedBrackets.indexOf(bracketsStack[prevBracketIndex]) === closedBrackets.indexOf(bracketsStack[curBracketIndex])
+                    ) {
+                    bracketsStack.splice(prevBracketIndex, 2);
+                }
+            }
+
+            if (bracketsStack.length === 0) {
+                alert('Скобки расставлены корректно');
+            } else {
+                alert('Скобки расставлены некорректно');
+            }
+        }
+
+        checkBrackets(bracketsString1);
+        checkBrackets(bracketsString2);
+        checkBrackets(bracketsString3);
+        checkBrackets(bracketsString4);
+        checkBrackets(bracketsString5);
+        checkBrackets(bracketsString6);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Внимание, при нажатии на ссылку ниже вы запустите бесконечную игру "КУПИ СЛОНА"</h1>
+    <a onclick="buyElefant()" href="">Поиграй в меня!</a>
+    <script>
+        // Дай пять
+        const anyNumber = prompt('Введите число');
+        alert(+anyNumber + 5);
+
+        // Не задание, а 💩
+        const userString = prompt('Что вы видите?');
+        alert(`не ${userString}, а 💩`)
+
+        // Тысячи их
+        const money = prompt('Введите размер вашей заработной платы')
+        alert (money / 1000 - money % 1000 / 1000 + 'k');
+
+        // 'Купи слона
+        const buyElefant = function() {
+            alert('Я предупреждал!');
+            let userString = prompt('купи слона!')
+            userString = prompt(`Все говорят ${userString}, да ${userString}, а ты купи слона!`);
+        }
+
+        // Поменяйтесь значениями
+        let firstVariableName = prompt('Введите название первой переменной');
+        let firstVariable = prompt('Введите значение первой переменной');
+        let secondVariableName = prompt('Введите название второй переменной');
+        let secondVariable = prompt('Введите значение второй переменной');
+        console.log(`Переменная ${firstVariableName} равна ${firstVariable}`);
+        console.log(`Переменная ${secondVariableName} равна ${secondVariable}`);
+        console.log('Поменяем значения');
+        let temp = firstVariable;
+        firstVariable = secondVariable;
+        secondVariable = temp;
+        console.log(`Переменная ${firstVariableName} равна ${firstVariable}`);
+        console.log(`Переменная ${secondVariableName} равна ${secondVariable}`);        
+    </script>
+</body>
+</html>

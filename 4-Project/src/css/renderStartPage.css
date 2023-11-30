@@ -1,0 +1,32 @@
+.start-page__wrapper {
+    background-color: var(--color-white-500);
+    color: var(--color-blue-600);
+}
+
+.start-page__header {
+    font-size: var(--text-size-3xl);
+}
+
+.start-page__header_weight {
+    font-weight: 500;
+}
+
+.start-page__header_position {
+    margin: 143px 0 0;
+}
+
+.start-page__sub-header {
+    font-size: var(--text-size-2xl);
+}
+
+.start-page__sub-header_weight {
+    font-weight: 400;
+}
+
+.start-page__sub-header_position {
+    margin: 20px 0 0;
+}
+
+.start-page__logo_position {
+    margin-top: 40px;
+}

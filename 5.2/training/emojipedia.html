@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эмоджипедия</title>
+    <style>
+        .emoji {
+            cursor: pointer;
+        }
+
+        .page {
+            position: relative;
+        }
+
+        .hint {
+            opacity: 0;
+            transition: 0.3s;
+            position: absolute;
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            border: 1px solid #ededed;
+        }
+
+        .hint-show {
+            opacity: 100;
+        }
+    </style>
+</head>
+
+<body class="page">
+    <div class="emoji"></div>
+    <div class="hint">Copied!</div>
+    <script>
+        const emojiContainer = document.querySelector('.emoji');
+        const hint = document.querySelector('.hint');
+        fetch('./emoji.json')
+            .then(response => response.json())
+            .then(data => {
+                let emojiesString = '';
+
+                data.forEach(element => {
+                    const spanForEmoji = document.createElement('span');
+                    spanForEmoji.classList.add('emoji');
+                    spanForEmoji.title = element.description;
+                    spanForEmoji.textContent = element.emoji;
+                    emojiContainer.appendChild(spanForEmoji);
+                });
+
+                function getMouseCoords(event) {
+                    return [event.clientX, event.clientY];
+                }
+
+                emojiContainer.addEventListener('click', async (event) => {
+                    const targetText = event.target.textContent;
+                    const mouseCoords = getMouseCoords(event);
+
+                    await navigator.clipboard.writeText(targetText);
+
+                    hint.style.left = mouseCoords[0] + 'px';
+                    hint.style.top = mouseCoords[1] + 'px';
+
+                    hint.classList.add('hint-show');
+
+                    const hintHideInterval = setTimeout(() => {
+                        hint.classList.remove('hint-show');
+                    }, 500);
+                });
+            })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>1.3 Знакомство с CSS</title>
+    <style>
+        [target] {
+            font-family: sans-serif;
+        }
+
+        .menu-item {
+            color: black;
+        }
+
+        .menu-list>a {
+            font-style: italic;
+        }
+
+        [href="meet-css"] {
+            font-size: 20px;
+        }
+
+        a body {
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body class="page">
+    <header class="header header-fixed">
+        <h1 class="title">1.3 Знакомство с CSS</h1>
+    </header>
+    <main>
+        <aside class="left-side panel">
+            <nav class="menu menu-open">
+                <h3 class="menu-title">Занятия</h3>
+                <ul class="menu-list">
+                    <li class="menu-item">1.1 Основы HTTP</li>
+                    <li class="menu-item">1.2 Знакомство с HTML</li>
+                    <li class="menu-item">
+                        <a class="target" href="#meet-css">
+                            1.3 Знакомство с CSS
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="content">
+            <article class="task">
+                <h2 class="task-title">
+                    Идеальный мэтч
+                </h2>
+                <p class="task-body">
+                    Перед вами html-документ и несколько селекторов. Для каждого
+                    селектора, найдите на какие теги документа они метчатся.
+                </p>
+                </acticle>
+                <article class="task">
+                    <h2 class="task-title">
+                        Ссылочный хамелеон
+                    </h2>
+                    <p class="task-body">
+                        Напишите такие CSS правила, чтобы текст внутри блоков с придуманным
+                        вами классом выглядел точь в точь как непосещенная ссылка.
+                    </p>
+                    </acticle>
+        </div>
+    </main>
+    <footer class="footer">
+        <h3>Смотрите также:</h3>
+        <article class="task">
+            <h2 class="task-title">
+                Я и Мефодий
+            </h2>
+            <p class="task-body">
+                Найдите любой шрифт на сервисе google fonts. Отобразите ваш контент на
+                странице с помощью этого шрифта.
+            </p>
+            </acticle>
+    </footer>
+</body>
+
+</html>

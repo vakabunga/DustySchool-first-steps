@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*## Ценный мех
+    Кролики в кроличьей норе имени М. Лапкина ввели новую демографическую политику. Теперь каждый год количество кроликов в норе будет расти согласно ряду чисел
+    Фибоначчи. Изначально кроликов в норе имени Лапкина двое. Через год кроликов станет трое, после чего, через ещё год – пятеро, и так далее.
+    Спросите у пользователя число. Вычислите, через сколько лет количество кроликов в норе станет равным, или превысит данное количество кроликов. */
+    const bunnies = +prompt('Сколько кроликов вы хотите? Два у вас уже есть!');
+    let fibonacci = 2;
+    let firstNumber;
+    let secondNumber = 1;
+    let count = 0;
+
+    if (bunnies === 0) {
+        alert('не хотите - как хотите');
+    } else {
+
+        while (fibonacci < bunnies) {
+            firstNumber = secondNumber;
+            secondNumber = fibonacci;
+            fibonacci = firstNumber + secondNumber;
+            count++;
+            console.log(fibonacci);
+        }
+        alert(`${bunnies} кроликов наплодится через ${count} лет`);
+    }
+
+    </script>
+</body>
+</html>

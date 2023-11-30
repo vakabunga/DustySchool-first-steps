@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лучший способ умножать на 11</title>
+</head>
+<body>
+    <script>
+        let userNumber = prompt('Введите двузначное число, чтобы получить результат умножения на 11');
+
+        while (isNaN(+userNumber) || (userNumber === null) || (userNumber.length !== 2)) {
+                userNumber = prompt('Некорректный ввод. Введите двузначное число, чтобы получить результат умножения на 11');
+        }
+
+        const firstNumber = Math.floor(userNumber / 10);
+        const secondNumber = userNumber % 10;
+        if (firstNumber + secondNumber > 9) {
+            confirm ('Если ' + userNumber + ' умножеить на 11, получится ' + (firstNumber + 1) + (firstNumber + secondNumber) % 10 + secondNumber);
+        } else {
+            confirm ('Если ' + userNumber + ' умножеить на 11, получится ' + firstNumber + (firstNumber + secondNumber) + secondNumber);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хинкальный кат</title>
+    <style>
+        .page {
+            max-width: 1024px;
+            margin: 50px auto;
+            padding: 10px;
+            border: 1px dotted #ccc;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .triangle {
+            width: 11px;
+            height: 11px;
+            transition: transform 200ms ease-out 0s;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .cut {
+            padding-left: 16px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body class="page">
+    <div class="container">
+        <svg id="arrow" viewBox="0 0 100 100" class="triangle" style="transform: rotateZ(90deg)">
+            <polygon points="5.9,88.2 50,11.8 94.1,88.2 "></polygon>
+        </svg>
+        <div class="cut-header">
+                Хинкали
+        </div>
+    </div>
+    <div id="under-the-cut" class="cut hidden">Хинка́ли (груз. ხინკალი) — блюдо грузинской кухни из горных областей Пшави, Мтиулети и Хевсурети в Грузии,
+        получившее распространение в других районах Кавказа и по всему бывшему СССР. Разновидность дамплингов.
+    </div>
+    
+    <script>
+        const arrow = document.getElementById('arrow');
+        const cutForm = document.getElementById('under-the-cut');
+        let status = 0;
+        
+        arrow.onclick = function () {
+            if (status === 0) {
+                status = 1;
+                arrow.style.transform = 'rotateZ(180deg)'
+            } else {
+                status = 0;
+                arrow.style.transform = 'rotateZ(90deg)'
+            }
+            cutForm.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

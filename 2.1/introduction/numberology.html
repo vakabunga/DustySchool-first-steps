@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нумерология</title>
+</head>
+<body>
+    <script>
+        // Нумерология
+        const userNumber = prompt('Введите число');
+        console.log('Ваше число четное - ' + (userNumber % 2 === 0));
+        console.log('В числе больше 1 знака - ' + (userNumber / 10 >= 1));
+        console.log('В числе больше 2 знаков - ' + (userNumber / 100 >= 1));
+        console.log('В числе больше 3 знаков - ' + (userNumber / 1000 >= 1));
+        console.log('Ваше число счастливое - ' + ((userNumber % 3 === 0) && (userNumber % 5 === 0) && (userNumber % 7 === 0)));
+    </script> 
+</body>
+</html>

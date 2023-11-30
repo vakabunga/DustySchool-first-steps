@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Агрессивная реклама</title>
+</head>
+
+<body>
+    <h2>Заголовок</h2>
+    <p>
+        Добро пожаловать на нашу страницу! Мы рады приветствовать вас в нашем онлайн-магазине. У нас вы найдете широкий
+        ассортимент товаров для дома, офиса и спорта. Мы предлагаем высокое качество продукции по доступным ценам.
+        Наша команда состоит из опытных профессионалов, которые всегда готовы помочь вам с выбором товара и ответить на
+        все ваши вопросы. Мы стремимся обеспечить нашим клиентам наилучший сервис и удовлетворить их потребности.
+        В нашем магазине вы можете найти все необходимое для создания уюта в вашем доме, организации рабочего
+        пространства или занятий спортом. Мы предлагаем широкий выбор мебели, аксессуаров, техники, спортивного
+        оборудования и многого другого.
+    </p>
+    <p>Не упустите возможность приобрести товары со скидкой или воспользоваться специальными предложениями. Посетите
+        нашу страницу, чтобы узнать больше о наших акциях и скидках.
+    </p>
+    <p> Мы надеемся, что наш магазин станет для вас надежным партнером в создании комфорта и уюта в вашей жизни. Спасибо
+        за выбор нашего магазина и приятного вам шопинга!
+    </p>
+
+    <script>
+        function copyright() {
+            let originText = window.getSelection();
+            let addedText = '<br><br>Источник: ' + document.location.href;
+            let copiedText = originText + addedText;
+            tempElement = document.createElement('div');
+            tempElement.style.position = 'absolute';
+            tempElement.style.left = '-99999px';
+            document.body.appendChild(tempElement);
+            tempElement.innerHTML = copiedText;
+            originText.selectAllChildren(tempElement);
+
+            window.setTimeout(function () {
+                document.body.removeChild(tempElement);
+            }, 100);
+        }
+        document.addEventListener('copy', copyright);
+    </script>
+</body>
+
+</html>

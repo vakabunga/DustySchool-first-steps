@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Допросник</title>
+</head>
+<body>
+    <script>
+        function askQuestion(question, cb) {
+            let answer;
+            while (cb(answer) !== true) {
+                answer = prompt(cb(answer) + question)
+            }
+            return answer;
+        }
+
+        function checkPassword(password) {
+            if (password.match(/\d/) && password.match(/\D/) && !password.match(/[ЁёА-я]/) && password.length >= 3 && !password.match(/\s/)) {
+                return true;
+            } else {
+                return 'Некорректный ввод. Пароль должен быть не менее 3 символов, содержать латинские буквы и хотя бы одну цифру. ';
+            }
+        }
+
+        function checkNumber(number) {
+            if (number > 1000) {
+                return true;
+            } else {
+                return 'Введено некорректное число. Необходимо число больше 1000';
+            }
+        }
+
+        const newPassword = askQuestion('Введите новый пароль не менее трех символов, содержащих только латинские буквы и хотя бы одну цифру', checkPassword);
+        const newNumber = askQuestion('Введите числе больше 1000', checkNumber);
+        console.log(newPassword);
+        console.log(newNumber);
+    </script>
+</body>
+</html>

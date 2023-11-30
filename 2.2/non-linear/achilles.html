@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*## ⭐️ Ахилесс-недогоняка
+        Ахилесс бежит за черепахой. Попав в парадокс, за первый рывок он пробегает ровно столько метров, сколько между ним и черепахой, но черепаха за это время
+        успеет проползти какое-то количество метров, после чего вторым рывком Ахилесс пробегает то количество метров, которое проползла черепаха за его первый рывок,
+        но черепаха снова отползает на еще какое-то расстояние. И его снова будет преодолевать Ахилесс, но черепаха опять успеет немного отпозти.
+        Таким образом, бедный Ахилесс никогда не догонит черепаху.
+        Спросите пользователя скорость Ахилесса (м/с), черепахи (м/с), и расстояние между ними (в метрах). Теперь введите новое расстояние (также в метрах).
+        Предполагается, что на все вопросы пользователь отвечает неотрицательными числами. Числа могут быть дробными.
+        Определите, за сколько полных рывков Ахилесс приблизится к черепахе на расстояние, указанное последним, или ближе. Если приблизится на такое расстояние
+        не удастся никогда – сообщите об этом.*/
+        const achillesSpeed = +prompt('Укажите скорость Ахиллеса:');
+        const turtleSpeed = +prompt('Укажите скорость черепахи:');
+        const distance = +prompt('Укажите расстояние между Ахиллесом и черепахой:');
+        const newDistance = +prompt('Укажите расстояние, на которое хотите, чтобы Ахиллес приблизился к черепахе');
+        let stepTime = distance / achillesSpeed;
+        let turtleDistance = stepTime * turtleSpeed;
+        let achillesDistance = stepTime * achillesSpeed;
+        let step = 0;
+
+        if (distance === newDistance) {
+            alert('Ахиллес уже на желаемом расстоянии от черепахи! Для этого нужно ' + step + ' рывков!');
+        } else if (turtleSpeed >= achillesSpeed) {
+            alert('Ахиллес никогда не догонит черепаху!');
+        } else {
+            do {
+                achillesDistance = stepTime * achillesSpeed;
+                turtleDistance = stepTime * turtleSpeed;
+                stepTime = turtleDistance / achillesSpeed;
+                step++;
+            }
+            while (turtleDistance > newDistance)
+            alert('Ахиллес приблизится к черепахе на расстояние ' + newDistance + ' за ' + step + ' полных рывка(ов)');
+        }
+    </script>
+</body>
+</html>

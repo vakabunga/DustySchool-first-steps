@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Ruda:wght@600;700&display=swap" rel="stylesheet">
+    <title>Суп дня</title>
+    <style>
+        .page {
+            background-color: #fafafa;
+            font-family: Ruda, Helvetica, sans-serif;
+            margin: 0;
+        }
+        
+        .soup {
+            max-width: 1920px;
+            min-width: 1200px;
+            position: relative;
+        }
+
+        .logo {
+            background-image: url('./pics/heart.svg');
+            position: absolute;
+            top: 23px;
+            left: 86px;
+            width: 135px;
+            height: 75px;
+        }
+
+        .menu {
+            list-style-type: none;
+            background-color: #d3d1e9;
+            margin: 0;
+            padding: 0;
+            padding-right: 215px;
+            text-align: right;
+        }
+
+        .menu-item {
+            list-style-type: none;
+            font-size: 20px;
+            line-height: 120px;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 30px;
+            letter-spacing: -1px;
+        }
+
+        .menu-item:first-child {
+            margin-left: 212px;
+        }
+
+        .menu-item:hover {
+            color: #ff0000;
+            cursor: pointer;
+        }
+
+        .language {
+            width: 120px;
+            background-color: #ce0002;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 120px;
+            text-transform: uppercase;
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="page">
+    <header class="soup">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li class="menu-item">Главная</li>
+            <li class="menu-item">Компания</li>
+            <li class="menu-item">Игры</li>
+            <li class="menu-item">Карьера</li>
+            <li class="menu-item">Новости</li>
+            <li class="menu-item">Контакты</li>
+        </ul>
+        <p class="language">eng</p>
+    </header>
+</body>
+</html>

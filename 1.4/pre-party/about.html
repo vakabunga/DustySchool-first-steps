@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+    <title>About Us</title>
+    <style>
+        .about {
+            width: 100%;
+            height: 350px;
+            background-image: url('./pics/mountain.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: DIN, Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 28px;
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+        }
+
+        .mask {
+            position: absolute;
+            margin: 0;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background-color: #3e443e;
+            opacity: 0.6;
+        }
+
+        .heading2 {
+            font-family: Open Sans, Helvetica, sans-serif;
+            font-size: 70px;
+            line-height: 72px;
+            position: relative;
+            margin: 0;
+            top: 67px;
+            font-weight: 300;
+        }
+
+        .buttons {
+            width: 388px;
+            position: relative;
+            top: 156px;
+            height: 57px;
+            margin: auto;
+        }
+
+        .common-button {
+            width: 180px;
+            height: 55px;
+            border: 0.7px solid #fff;
+            background: transparent;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .contact {
+            display: inline-block;
+        }
+
+        .faq {
+            display: inline-block;
+            margin-left: 24px;
+        }
+    </style>
+</head>
+<body>
+    <header class="about">
+        <p class="mask"></p>
+        <h2 class="heading2">About Us</h2>
+        <div class="buttons">
+            <button class="common-button contact">contact us</button>
+            <button class="common-button faq">read FAQ</button>
+        </div>
+    </header>
+</body>
+</html>

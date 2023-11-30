@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каждый охотник</title>
+</head>
+<style>
+    .heading-h2 {
+        text-align: center;
+    }
+
+    .rainbow {
+        width: 100px;
+        height: 100px;
+        margin: 50px auto;
+        border: 1px solid #aaa;
+        background-color: transparent;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <h2 class="heading-h2">Click on me. Change the color</h2>
+    <div id="square" class="rainbow"></div>
+    <script>
+        const square = document.getElementById('square');
+        const colors = ['#f00', '#ff7f00', '#ff0', '#0f0', '#00bfff', '#00f', '#9400d3'];
+        let colorNumber = -1;
+
+        square.onclick = function() {
+            colorNumber === 6 ? colorNumber = 0 : colorNumber += 1;
+            square.style.backgroundColor = colors[colorNumber];
+        }
+    </script>
+</body>
+</html>

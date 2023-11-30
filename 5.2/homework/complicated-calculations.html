@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Сложные вычисления</title>
+</head>
+
+<body>
+    <h1>Первая в мире программа для сложения двух чисел</h1>
+    <p>Введите два числа</p>
+    <form class="form" action="submit">
+        <label for="summand1">
+            <input class="summand" type="text" name="summand" id="summand1" placeholder="Введите число">
+        </label>
+        <label for="summand2">
+            <input class="summand" type="text" name="summand" id="summand2" placeholder="Введите число">
+        </label>
+        <button>Сложить</button>
+    </form>
+    <p class="answer"></p>
+
+    <script>
+        const form = document.querySelector('.form');
+        const summand = document.querySelectorAll('.summand');
+        const answer = document.querySelector('.answer');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const summands = [];
+
+            summand.forEach((element) => {
+                summands.push(element.value);
+            });
+
+            fetch(`http://localhost:3000/?first=${summands[0]}&second=${summands[1]}`)
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.result === null) {
+                        throw new Error('Введите корректные числа');
+                    }
+                    answer.textContent = 'Сумма заданных чисел равна ' + data.result;
+                })
+                .catch((error) => {
+                    if (error.message === 'Unexpected end of JSON input') {
+                        answer.textContent = 'Введите числа';
+                    } else {
+                        answer.textContent = error.message;
+                    }
+                });
+        });
+    </script>
+</body>
+
+</html>

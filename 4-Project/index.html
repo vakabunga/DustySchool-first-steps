@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./src/css/style.css">
+        <title>Менеджер паролей</title>
+</head>
+
+<body class="page">
+        <div class="modal-window-menu hidden">
+                <header class="menu__title">Меню</header>
+                <main class="modal-window-menu__main">
+                        <div class="modal-window-menu__case-button">
+                                <button class="menu__button menu__button-house menu__button-active" data-page="house"><i
+                                                class="fa-solid fa-house menu__button-icon"></i>Все записи</button>
+                                <button class="menu__button menu__button-card" data-page="card"><i
+                                                class="fa-solid fa-credit-card menu__button-icon"></i>Карты</button>
+                                <button class="menu__button menu__button-password" data-page="password"><i
+                                                class="fa-solid fa-lock menu__button-icon"></i>Пароли</button>
+                                <button class="menu__button menu__button-code" data-page="code"><i
+                                                class="fa-solid fa-gear menu__button-icon"></i>Секретный код</button>
+                                <button class="menu__button menu__button-data" data-page="data"><i
+                                                class="fa-solid fa-user menu__button-icon"></i>Личные данные</button>
+                                <button class="menu__button menu__button-data" data-page="passwordGenerator"><i
+                                                class="fa-solid fa-key menu__button-icon"></i>Генератор
+                                        пароля</button>
+                                <button class="menu__button menu__button-info" data-page="info"><i
+                                                class="fa-solid fa-question menu__button-icon"></i>О приложении</button>
+                        </div>
+                </main>
+        </div>
+        <header class="header">
+                <button class="icon-button icon-button_type_menu"><i
+                                class="fa-solid fa-bars icon-button__icon"></i></button>
+                <p class="page-title">Все записи</p>
+                <button class="icon-button icon-button_type_sort"><i
+                                class="fa-solid fa-sort icon-button__icon"></i></i></button>
+        </header>
+        <main class="main">
+
+        </main>
+
+        <script src="https://kit.fontawesome.com/58b559da9d.js" crossorigin="anonymous"></script>
+        <script src="./src/script/activeButtonStatusChange.js"></script>
+        <script src="./src/script/alertPopup.js"></script>
+        <script src="./src/script/cancelRenderCreateSecurityPassword.js"></script>
+        <!-- <script src="./src/script/checkedCheckbox.js"></script> -->
+        <script src="./src/script/checkboxSecurityPopupAppears.js"></script>
+        <script src="./src/script/checkDuplicateNames.js"></script>
+        <script src="./src/script/checkIsPasswordSet.js"></script>
+        <script src="./src/script/checkSecurityPassword.js"></script>
+        <script src="./src/script/checkSecurityPopup.js"></script>
+        <script src="./src/script/clearPage.js"></script>
+        <script src="./src/script/commonFunctionAddPassword.js"></script>
+        <script src="./src/script/createSecurityPassword.js"></script>
+        <script src="./src/script/decryptPassword.js"></script>
+        <script src="./src/script/editPassword.js"></script>
+        <script src="./src/script/encryptPassword.js"></script>
+        <script src="./src/script/formSubmit.js"></script>
+        <script src="./src/script/generationPassword.js"></script>
+        <script src="./src/script/onMenuButtonClick.js"></script>
+        <script src="./src/script/optionsMenu.js"></script>
+        <script src="./src/script/readUserDataStorage.js"></script>
+        <script src="./src/script/recheckPassword.js"></script>
+        <script src="./src/script/renderAddButton.js"></script>
+        <script src="./src/script/renderAddCardPage.js"></script>
+        <script src="./src/script/renderAddMenu.js"></script>
+        <script src="./src/script/renderAddCardPage.js"></script>
+        <script src="./src/script/renderAddPasswordPage.js"></script>
+        <script src="./src/script/renderChangeSecurityPasswordPage.js"></script>
+        <!-- <script src="./src/script/renderHelpMenu.js"></script> -->
+        <script src="./src/script/renderInputPassword.js"></script>
+        <!-- <script src="./src/script/renderOptionsMenu.js"></script> -->
+        <script src="./src/script/renderSecurityPasswordPage.js"></script>
+        <script src="./src/script/renderSecurityPopup.js"></script>
+        <script src="./src/script/renderStartPage.js"></script>
+        <script src="./src/script/renderUserDataPage.js"></script>
+        <script src="./src/script/restrictCyrylic.js"></script>
+        <script src="./src/script/saveChangesToStorage.js"></script>
+        <script src="./src/script/script.js"></script>
+        <script src="./src/script/showHidePassword.js"></script>
+        <script src="./src/script/validationCreatePasword.js"></script>
+        <script src="./src/script/writeUserDataStorage.js"></script>
+</body>
+
+</html>

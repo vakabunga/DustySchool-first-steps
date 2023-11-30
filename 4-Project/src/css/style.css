@@ -1,0 +1,74 @@
+/* @import url(./CreateSecurityPasswordPage.css); */
+@import url(./cardAdd.css);
+@import url(./formaAdd.css);
+@import url(./mainPage.css);
+@import url(./modalWindowMenu.css);
+@import url(./renderAddMenu.css);
+@import url(./renderSecurityPasswordPage.css);
+@import url(./renderSecurityPopup.css);
+@import url(./renderStartPage.css);
+@import url(./renderUserDataPage.css);
+
+
+
+:root {
+    --color-white-500: #ffffff;
+    --color-white-400: rgba(255, 255, 255, 0.60);
+    --color-black-500: #191919;
+    --color-black-400: #696969;
+    --color-black-300: #45474a;
+    --color-black-200: #e1e5ea;
+    --color-red-500: #ba1a1a;
+    --color-blue-600: #42BBCB;
+    --color-blue-400: rgba(66, 187, 203, 0.30);
+    --color-blue-300: rgba(66, 187, 203, 0.15);
+    --text-size-3xl: 48px;
+    --text-size-2xl: 24px;
+    --text-size-xl: 22px;
+    --text-size-l: 16px;
+    --text-size-m: 14px;
+    --text-size-s: 11px;
+    --text-line-2xl: 1.7;
+    --text-line-xl: 1.5;
+    --text-line-l: 1.2;
+    --text-line-m: 1;
+    --background-page: var(--color-blue-300);
+    --background-search: var(--color-white-500);
+    --background-record-password: var(--color-blue-400);
+    --background-record-card: var(--color-white-400);
+    --background-active-button: var(--color-blue-600);
+    --background-inactive-button: var(--color-blue-400);
+    --color-title-add-password: var(--color-blue-600);
+    --color-title: var(--color-black-300);
+    --color-text-hint: var(--color-black-400);
+    --color-text-error: var(--color-red-500);
+    --color-text-input: var(--color-black-300);
+    --color-password-item-title: var(--color-black-500);
+    --color-password-item-text: var(--color-black-300);
+    --color-border-input: var(--color-black-200);
+    --text-size-title-add-password: var(--text-size-2xl);
+    --text-size-title: var(--text-size-xl);
+    --text-size-hint: var(--text-size-s);
+    --text-size-input: var(--text-size-l);
+    --text-size-input-password: var(--text-size-m);
+    --text-size-password-item-title: var(--text-size-l);
+    --text-size-password-item-text: var(--text-size-m);
+    --text-size-no-use-password: var(--text-size-m);
+    --text-size-buttons: var(--text-size-l);
+    --text-line: var(--text-line-l);
+    --color-black-100: rgba(225, 229, 234, 0.5);
+    --background-menu-active-button: var(--color-black-100);
+    --background-menu-inactive-button: var(--color-white-500);
+    --color-menu-text-active-button: var(--color-black-500);
+    --color-menu-text-inactive-button: var(--color-black-400);
+}
+
+.alert,
+.overhanging-window {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}

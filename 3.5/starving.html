@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Голодные клики</title>
+</head>
+<style>
+    .hungry-pacman {
+        width: 90%;
+        height: 24px;
+        border: 0.5px solid #aeaeae;
+        border-radius: 12px;
+        padding: 0 12px;
+        margin: 0 auto;
+    }
+
+    .butcher-button {
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+    }
+</style>
+
+<body class="page">
+    <div>
+        <button class="butcher-button">Give me your letter</button>
+        <p>Short text</p>
+        <p>Some test</p>
+        <p>One more</p>
+    </div>
+    <div>
+        <button class="butcher-button">Give me your letter</button>
+        <p>Short text</p>
+        <p>Some test</p>
+        <p>One more</p>
+    </div>
+    <script>
+        const butcherButtons = document.querySelectorAll('.butcher-button');
+
+        butcherButtons.forEach((elem) => {
+            elem.addEventListener('click', function ({ target }) {
+                if (!target.nextElementSibling) {
+                    return;
+                }
+
+                let donorText = target.nextElementSibling.textContent;
+
+                if (donorText.length === 0) {
+                    target.nextElementSibling.remove();
+                    return;
+                }
+
+                elem.textContent += donorText.slice(-1);
+                target.nextElementSibling.textContent = donorText.slice(0, -1);
+            });
+        })
+    </script>
+</body>
+
+</html>

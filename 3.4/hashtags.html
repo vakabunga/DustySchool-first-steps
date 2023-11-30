@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <script src="https://kit.fontawesome.com/58b559da9d.js" crossorigin="anonymous"></script>
+    <title>Бирошная</title>
+    <style>
+        .page {
+            margin: 0;
+            text-align: center;
+        }
+
+        .input-error::placeholder {
+            color: red;
+        }
+
+        .hashtag-wrapper {
+            padding: 5px;
+            display: flex;
+            margin-top: 50px;
+            height: 35px;
+            gap: 15px;
+        }
+
+        .hashtag-container {
+            background-color: #ededed;
+            border: 0.5px solid #868585;
+            border-radius: 10px;
+            padding: 5px;
+            position: relative;
+        }
+
+        .hashtag-close {
+            position: absolute;
+            top: -2.5px;
+            right: -2,5px;
+            size: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="page">
+    <div class="hashtag-wrapper"></div>
+    <form action="#">
+        <input class="input" type="text" placeholder="add name of your hashtag" autofocus>
+        <button class="button">Add</button>
+    </form>
+    <script>
+        const hashtagWrapper = document.querySelector('.hashtag-wrapper');
+        const input = document.querySelector('.input');
+        const button = document.querySelector('.button');
+        let hashtagCounter = 0;
+        const closeButton = document.querySelector('.hashtag-close');
+
+        function removeHiddenClass ({ target }) {
+            ;
+        }
+
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            if (hashtagCounter > 4) {
+                input.value = '';
+                input.placeholder = 'too much hashtags';
+                input.classList.add('input-error');
+                return;
+            }
+
+            const hashtag = input.value;
+            hashtagCounter += 1;
+            input.value = '';
+
+            const hashtagContainer = document.createElement('div');
+            const hashtagContainerClose = document.createElement('i');
+
+            hashtagContainer.classList.add('hashtag-container');
+            hashtagContainerClose.classList.add('hashtag-close', 'fa-solid', 'fa-circle-xmark', 'hidden');
+            hashtagContainer.textContent = hashtag.startsWith('#') ? hashtag : '#' + hashtag;
+
+            hashtagWrapper.appendChild(hashtagContainer);
+            hashtagContainer.appendChild(hashtagContainerClose);
+
+            hashtagContainer.addEventListener('mouseenter', function ({ target }) {
+                target.lastChild.classList.remove('hidden');
+            });
+
+            hashtagContainer.addEventListener('mouseleave', function ({ target }) {
+                target.lastChild.classList.add('hidden');
+            });
+
+            hashtagContainerClose.addEventListener('mouseover', function({ target }) {
+                target.classList.add('fa-spin');
+            });
+
+            hashtagContainerClose.addEventListener('mouseleave', function({ target }) {
+                target.classList.remove('fa-spin');
+            });
+            
+            hashtagContainerClose.addEventListener('click', function({ target }) {
+                target.parentElement.remove();
+                hashtagCounter -= 1;
+                input.placeholder = 'add name of your hashtag';
+                input.classList.remove('input-error');
+            }, {once: true});
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Инпутный клининг</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .text-editor-area {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="page">
+    <h1 class="editable">Этот заголовок можно заменить</h1>
+    <p class="editable">И тут может быть куча текста. Больше чем сейчас написано. Но если он вам не нужен, кликните по
+        тексту и замените его!</p>
+    <p class="editable">И тут может быть куча текста. Больше чем сейчас написано. Но если он вам не нужен, кликните по
+        тексту и замените его!</p>
+    <h2 class="editable">Этот заголовок можно заменить</h2>
+    <p class="editable">И тут может быть куча текста. Больше чем сейчас написано. Но если он вам не нужен, кликните по
+        тексту и замените его!</p>
+    <p class="editable">И тут может быть куча текста. Больше чем сейчас написано. Но если он вам не нужен, кликните по
+        тексту и замените его!</p>
+    <h3>А этот нельзя менять!</h3>
+    <div>
+        <p class="editable">i can edit this text too</p>
+        <p>and this one cant</p>
+        <p>and <span class="editable"> this one can</span> again</p>
+    </div>
+    <ul>
+        <li class="editable">
+            кликните по тексту и замените его
+        </li>
+        <li class="editable">
+            кликните по тексту и замените его
+        </li>
+        <li class="editable">
+            кликните по тексту и замените его
+        </li>
+        <li class="editable">
+            кликните по тексту и замените его
+        </li>
+        <li class="editable">
+            кликните по тексту и замените его
+        </li class="editable">
+    </ul>
+    <p>Кликай, не кликай, а текст все равно не поменяешь!</p>
+
+    <script>
+        const page = document.querySelector('.page');
+        const editorWrapper = document.createElement('div');
+        const textEditorArea = document.createElement('textarea');
+        const applyButton = document.createElement('button');
+        const cancelButton = document.createElement('button');
+        const clearButton = document.createElement('button');
+
+        editorWrapper.classList.add('editor-wrapper');
+        textEditorArea.classList.add('text-editor-area');
+        applyButton.classList.add('apply-button');
+        cancelButton.classList.add('cancel-button');
+        clearButton.classList.add('clear-button');
+
+        applyButton.textContent = 'Apply';
+        cancelButton.textContent = 'Cancel';
+        clearButton.textContent = 'Clear';
+
+        const editableElements = document.querySelectorAll('.editable');
+
+        let originalText;
+
+        function addEventListenerToCollection (array) {
+            const elementsArray = Array.from(array);
+
+            for (let i = 0; i < elementsArray.length; i++) {
+                elementsArray[i].addEventListener('click', elementEditorHandler);
+            }
+        }
+
+        function removeEventListenerFromCollection (array) {
+            const elementsArray = Array.from(array);
+
+            for (let i = 0; i < elementsArray.length; i++) {
+                elementsArray[i].removeEventListener('click', elementEditorHandler);
+            }
+        }
+
+        function elementEditorHandler (event) {
+            if (event.target.classList.contains('editable')) {
+
+                removeEventListenerFromCollection(editableElements);
+
+                const editingElement = event.target;
+
+                originalText = editingElement.textContent;
+                textEditorArea.value = originalText;
+                editingElement.textContent = '';
+                editingElement.appendChild(editorWrapper);
+                editorWrapper.appendChild(textEditorArea);
+                editorWrapper.appendChild(applyButton);
+                editorWrapper.appendChild(cancelButton);
+                editorWrapper.appendChild(clearButton);
+            }
+        }
+
+        addEventListenerToCollection(editableElements);
+
+        applyButton.addEventListener('click', function ({ target }) {
+            editingElement = target.closest('.editable');
+            editingElement.textContent = textEditorArea.value;
+            addEventListenerToCollection(editableElements);
+        });
+
+        cancelButton.addEventListener('click', function ({ target }) {
+            editingElement = target.closest('.editable');
+            editingElement.textContent = originalText;
+            addEventListenerToCollection(editableElements);
+        });
+
+        clearButton.addEventListener('click', function () {
+            textEditorArea.value = '';
+            addEventListenerToCollection(editableElements);
+        });
+    </script>
+</body>
+
+</html>

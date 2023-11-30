@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Купи за 3 тыщи</title>
+    <style>
+        .page {
+            background-color: #f5f5f5;
+        }
+
+        .card {
+            width: 290px;
+            font-family: Roboto, Helvetica, sans-serif;
+            background: #fbfbfb;
+            box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.1), 4px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px 25px;
+            position: relative;
+            box-sizing: border-box;
+            margin: 0 auto;
+            height: 165px;
+        }
+
+        .card-price {
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 28px;
+            color: #333232;
+            margin: 0;
+        }
+
+        .card-xiaomi {
+            position: absolute;
+            right: 25px;
+            top: 47px;
+            text-transform: uppercase;
+            background-color: #fe6A10;
+            color: #fefdfd;
+            line-height: 15px;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .card-click-me {
+            width: 100%;
+            height: 41px;
+            background-color: #2cb708;
+            border-radius: 10px;
+            font-size: 18px;
+            margin-top: 17px;
+            border: none;
+        }
+
+        .card-click-me:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="page">
+    <div class="card">
+        <p class="card-price">3000 ₽</p>
+        <p class="card-xiaomi">xiaomi.kz</p>
+        <button class="card-click-me">Купить</button>
+    </div>
+</body>
+</html>

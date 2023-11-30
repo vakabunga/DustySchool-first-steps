@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <style>
+        .page {
+            text-align: center;
+        }
+
+        .current-location-text {
+            margin-top: 50px;
+        }
+
+        .results-area {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cities,
+        .distances {
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            list-style: none;
+        }
+
+        .distances-area {
+            width: 500px;
+            text-align: center;
+        }
+
+        .distance {
+            width: 0%;
+        }
+
+        .button {
+            margin-top: 50px;
+            padding: 10px 25px;
+        }
+    </style>
+    <title>Владивосток 2000</title>
+</head>
+
+<body class="page">
+    <button class="button">Где я?</button>
+    <h4 class="current-location-text hidden">You are here</h4>
+    <div class="results-area hidden">
+        <ul class="cities">
+            <li class="city"></li>
+            <li class="city"></li>
+            <li class="city"></li>
+            <li class="city"></li>
+            <li class="city"></li>
+        </ul>
+        <ul class="distances distances-area">
+            <li class="distance"></li>
+            <li class="distance"></li>
+            <li class="distance"></li>
+            <li class="distance"></li>
+            <li class="distance"></li>
+        </ul>
+    </div>
+
+    <script>
+        const citiesToCompare = [
+            {
+                city: 'Moscow',
+                width: '0%',
+                color: '#ff99c8',
+                lat: 55.7504461,
+                lon: 37.6174943,
+                distance: ''
+            },
+
+            {
+                city: 'Batumi',
+                width: '0%',
+                color: '#fcf6bd',
+                lat: 41.6509502,
+                lon: 41.6360085,
+                distance: ''
+            },
+
+            {
+                city: 'Tomsk',
+                width: '0%',
+                color: '#d0f4de',
+                lat: 56.47601318359375,
+                lon: 84.98177337646484,
+                distance: ''
+            },
+
+            {
+                city: 'Sevastopol',
+                width: '0%',
+                color: '#a9def9',
+                lat: 44.5655503,
+                lon: 33.4595986,
+                distance: ''
+            },
+
+            {
+                city: 'Tokyo',
+                width: '0%',
+                color: '#e4c1f9',
+                lat: 35.6812665,
+                lon: 139.757653,
+                distance: ''
+            }];
+
+        const currentLocationText = document.querySelector('.current-location-text');
+        const resultsArea = document.querySelector('.results-area');
+        const citiesList = document.querySelectorAll('.city');
+        const distanceList = document.querySelectorAll('.distance');
+        const getLocationButton = document.querySelector('.button');
+
+        getLocationButton.addEventListener('click', function () {
+            const earthRadius = 6371;
+            let lat = '';
+            let lon = '';
+
+            navigator.geolocation.getCurrentPosition(function (data) {
+                lat = data.coords.latitude;
+                lon = data.coords.longitude;
+
+                const currentLatInRad = lat * Math.PI / 180;
+
+                citiesToCompare.forEach(function (element) {
+
+                    const latInRad = element.lat * Math.PI / 180;
+                    const deltaLatInRad = (element.lat - lat) * Math.PI / 180;
+                    const deltaLonInRad = (element.lon - lon) * Math.PI / 180;
+                    const a = Math.sin(deltaLatInRad / 2) ** 2 + Math.cos(currentLatInRad) * Math.cos(latInRad) * Math.sin(deltaLonInRad / 2) * Math.sin(deltaLonInRad / 2);
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    element.distance = Math.round(earthRadius * c);
+
+                });
+
+                citiesToCompare
+
+                    .sort(function (firstCity, secondCity) {
+
+                        if (firstCity.distance > secondCity.distance) {
+                            return 1;
+                        }
+
+                        if (firstCity.distance < secondCity.distance) {
+                            return -1;
+                        }
+
+                        return 0;
+                    })
+
+                    .forEach(function (element, index) {
+                        let distance = distanceList[index];
+                        citiesList[index].textContent = element.city;
+                        distance.textContent = element.distance + 'km';
+                        distance.style.width = element.distance / citiesToCompare[citiesToCompare.length - 1].distance * 100 + '%';
+                        distance.style.background = element.color;
+                        currentLocationText.classList.remove('hidden');
+                        resultsArea.classList.remove('hidden');
+                    });
+            }, function (error) {
+                alert('Вы запретили браузеру доступ к геолокации. Предоставьте доступ и попробуйте снова');
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>

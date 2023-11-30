@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра в города</title>
+</head>
+<body>
+    <!-- Мы спрашиваем у пользователя город, после чего спрашиваем далее. Каждый следующий город должен начинаться на последнюю букву предыдущего города.
+    Считаем, что все города вводятся с маленькой буквы. Не нужно проверять, что город существует, верим на слово.
+    Повторять города нельзя! Если город повторяется, игра заканчивается. Если пользователь вводит город начиная с неправильной буквы, надо попросить ввести
+    правильный город. Также, игра заканчивается если пользователь отказывается ввести город -->
+    <script>
+        function gameOfCities() {
+            const cities = [];
+            let newCity = prompt('Игра началась. Введите любой город');
+            cities.push(newCity);
+            newCity='';
+
+            while (newCity !== null) {
+                newCity = '';
+                let lastCity = cities[cities.length - 1];
+                let lastCityLetter = Array.from(lastCity)[lastCity.length - 1];
+
+                while (newCity !== null && Array.from(newCity)[0] !== lastCityLetter) {
+                    newCity = prompt(`Введите город на букву ${lastCityLetter}`)               
+                }
+
+                if (cities.includes(newCity)) {
+                        alert('Увы, вы проиграли. Такой город уже называли!');
+                        alert(cities.filter(Boolean));
+                        break;
+                }
+
+                cities.push(newCity);
+            }
+        }
+
+        gameOfCities();
+    </script>
+</body>
+</html>

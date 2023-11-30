@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Факт o’real</title>
+</head>
+<body>
+    <script>
+        let userNumber = prompt('Введите целое число больше нуля для вычисления факториала');
+        let factoreal = 1;
+        
+        while (isNaN(+userNumber) || (userNumber === null)) {
+                userNumber = prompt('Некорректный ввод. Введите целое число больше нуля для вычисления факториала');
+        }
+
+        for (let i = 0; i < userNumber; i++) {
+            factoreal *= i + 1;
+        }
+
+        if (+userNumber === 0) {
+            confirm('Факториал числа ' + userNumber + ' равен 0');
+        } else {
+            confirm('Факториал числа ' + userNumber + ' равен ' + factoreal);
+        }
+    </script>
+</body>
+</html>

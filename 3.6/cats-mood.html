@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Настрой котика</title>
+</head>
+<style>
+    .page {
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    .options-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .result {
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    .cat_image {
+        width: 50%;
+    }
+
+    .cat__preload {
+        position: absolute;
+        top: -100000px;
+        left: -100000px;
+    }
+</style>
+
+<body class="page">
+    <div class="cat__preload">
+        <img src="./cats/fat_black_rest_cat.jpg" alt="" srcset="">
+        <img src="./cats/fat_black_work_cat.jpg" alt="" srcset="">
+        <img src="./cats/fat_red_rest_cat.jpg" alt="" srcset="">
+        <img src="./cats/fat_red_work_cat.jpg" alt="" srcset="">
+        <img src="./cats/fat_white_rest_cat.jpg" alt="" srcset="">
+        <img src="./cats/fat_white_work_cat.jpg" alt="" srcset="">
+        <img src="./cats/slim_black_rest_cat.jpg" alt="" srcset="">
+        <img src="./cats/slim_black_work_cat.jpg" alt="" srcset="">
+        <img src="./cats/slim_red_rest_cat.jpg" alt="" srcset="">
+        <img src="./cats/slim_red_work_cat.jpg" alt="" srcset="">
+        <img src="./cats/slim_white_rest_cat.jpg" alt="" srcset="">
+        <img src="./cats/slim_white_work_cat.jpg" alt="" srcset="">
+    </div>
+    <h1>Какой котик ты сегодня?</h1>
+    <div class="options-wrapper">
+        <div class="option option_body">
+            <h4>Телосложение</h4>
+            <label for="body-fat">
+                <input class="radio-button-option" type="radio" name="body" id="body-fat" value="fat">
+                Упитанный
+            </label>
+            <label for="body-slim">
+                <input class="radio-button-option" type="radio" name="body" id="body-slim" value="slim">
+                Стройняшка
+            </label>
+        </div>
+        <div class="option option_color">
+            <h4>Цвет</h4>
+            <label for="color-red">
+                <input class="radio-button-option" type="radio" name="color" id="color-red" value="red">
+                Рыжий
+            </label>
+            <label for="color-black">
+                <input class="radio-button-option" type="radio" name="color" id="color-black" value="black">
+                Черный
+            </label>
+            <label for="color-white">
+                <input class="radio-button-option" type="radio" name="color" id="color-white" value="white">
+                Белый
+            </label>
+        </div>
+        <div class="option option_mood">
+            <h4>Времяпрепроводждение</h4>
+            <label for="mood-rest">
+                <input class="radio-button-option" type="radio" name="mood" id="mood-rest" value="rest">
+                Отдых
+            </label>
+            <label for="mood-work">
+                <input class="radio-button-option" type="radio" name="mood" id="mood-work" value="work">
+                Работа
+            </label>
+        </div>
+    </div>
+    <div class="result">
+        <img class="cat_image">
+    </div>
+
+    <script>
+        const cats = {
+            'fat': {
+                'red': {
+                    'rest': './cats/fat_red_rest_cat.jpg',
+                    'work': './cats/fat_red_work_cat.jpg'
+                },
+                'black': {
+                    'rest': './cats/fat_black_rest_cat.jpg',
+                    'work': './cats/fat_black_work_cat.jpg'
+                },
+                'white': {
+                    'rest': './cats/fat_white_rest_cat.jpg',
+                    'work': './cats/fat_white_work_cat.jpg'
+                }
+            },
+            'slim': {
+                'red': {
+                    'rest': './cats/slim_red_rest_cat.jpg',
+                    'work': './cats/slim_red_work_cat.jpg'
+                },
+                'black': {
+                    'rest': './cats/slim_black_rest_cat.jpg',
+                    'work': './cats/slim_black_work_cat.jpg'
+                },
+                'white': {
+                    'rest': './cats/slim_white_rest_cat.jpg',
+                    'work': './cats/slim_white_work_cat.jpg'
+                }
+            }
+        }
+
+        const catResult = document.querySelector('.cat_image');
+        const options = document.querySelector('.options-wrapper');
+        const choice = [];
+
+        options.addEventListener('click', ({ target }) => {
+            if (target.name === 'body') {
+                choice[0] = target.value;
+            }
+
+            if (target.name === 'color') {
+                choice[1] = target.value;
+            }
+
+            if (target.name === 'mood') {
+                choice[2] = target.value;
+            }
+
+            if (!choice[0] || !choice[1] || !choice[2]) {
+                return;
+            }
+
+            catResult.src = cats[choice[0]][choice[1]][choice[2]];
+        })
+
+    </script>
+</body>
+
+</html>

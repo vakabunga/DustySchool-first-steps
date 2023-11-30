@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Idea</title>
+    <style>
+        .statistic-wrapper {
+            min-width: 1170px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .statistic {
+            font-family: helvetica, arial, san-serif;
+            color: #1d1d1d;
+            line-height: 1.3;
+       }
+
+        .heading3 {
+            font-weight: 400;
+            font-size: 36px;
+            margin: 0;
+            margin-bottom: 30px;
+        }
+
+        .advantages {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .advantage {
+            text-align: center;
+            width: 255px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .advantage::before {
+            left: 0;
+            right: 0;
+            height: 6px;
+            background-color: #d7b56d;
+            content: '';
+            position: absolute;
+        }
+
+        .advantage-heading {
+            font-size: 64px;
+            margin: 12px 0;
+        }
+
+        .advantage-text {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .power {
+            font-size: 40px;
+            vertical-align: super;
+        }
+
+    </style>
+</head>
+<body>
+    <main class="statistic-wrapper">
+        <div class="statistic">
+            <h3 class="heading3">Tehno-Wood в цифрах</h3>
+            <div class="advantages">
+                <article class="advantage">
+                    <h4 class="advantage-heading">6</h4>
+                    <p class="advantage-text">производственных направлений</p>
+                </article>
+                <article class="advantage">
+                    <h4 class="advantage-heading">10</h4>
+                    <p class="advantage-text">лет на рынке</p>
+                </article>
+                <article class="advantage">
+                    <h4 class="advantage-heading">1500</h4>
+                    <p class="advantage-text">значимых обьектов</p>
+                </article>
+                <article class="advantage">
+                    <h4 class="advantage-heading">6000м<span class="power">2</span></h4>
+                    <p class="advantage-text">производственной площади</p>
+                </article>
+     	   </div>
+        </div>
+    </main>
+</body>
+</html>

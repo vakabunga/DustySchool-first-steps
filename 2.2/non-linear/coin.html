@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  ## Орёл или решка
+        let playerScore = 100;
+        let compScore = 100;
+        let playerAnswer; 
+        while (playerScore > 0 && compScore > 0) {
+            const bet = +prompt(`Делайте вашу ставку: от 1 до ${playerScore} тугриков`);
+
+            while (playerAnswer !== 'орел' && playerAnswer !== 'решка') {
+                playerAnswer = prompt('Делайте вашу ставку: "орел" или "решка"?');
+            }
+
+            const coin = Math.random();
+            
+            if (coin <= 0.5) {
+                alert('Выпал орел!');
+                
+                if (playerAnswer === 'орел') {
+                    playerScore += bet;
+                    compScore -= bet;
+                } else {
+                    compScore += bet;
+                    playerScore -= bet;
+                }
+            }
+
+            if (coin > 0.5) {
+                alert('Выпала решка!');
+                
+                if (playerAnswer === 'решка') {
+                    playerScore += bet;
+                    compScore -= bet;
+               } else {
+                    compScore += bet;
+                    playerScore -= bet;
+                }
+            }
+
+            playerAnswer = '';
+        }
+
+        if (playerScore === 0) {
+           alert(`Победил Компьютер`)
+        } else {
+            alert(`Победил Игрок`)
+        }
+        
+        console.log('playerScore: ' + playerScore + ' and compScore: ' + compScore);
+    </script>
+</body>
+</html>

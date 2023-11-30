@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+    <title>The forest</title>
+    <style>
+        .location {
+            width: 1413px;
+            background-color: #e9ece0;
+            font-family: Open sans, Helvetica, sans-serif;
+        }
+
+        .map {
+            width: 704px;
+            display: inline-block;
+            position: relative;
+            background-image: url('./pics/forest.png');
+            background-size: cover;
+            height: 650px;
+        }
+
+        .mask {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #3e443e;
+            opacity: 0.4;
+        }
+
+        .circle1 {
+            position: absolute;
+            top: 237px;
+            left: 264px;
+        }
+        .circle2 {
+            position: absolute;
+            top: 258px;
+            left: 285px;
+        }
+        .circle3 {
+            position: absolute;
+            top: 277px;
+            left: 304px;
+        }
+
+        .map-text {
+            font-family: DIN, Helvetica, sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            line-height: 16px;
+            text-align: center;
+            color: #333333;
+            position: absolute;
+            width: 71px;
+            margin: 0;
+            top: 312px;
+            left: 316px;
+        }
+
+        .about {
+            display: inline-block;
+            width: 704px;
+            position: relative;
+            height: 650px;
+        }
+
+        .heading3 {
+            font-size: 40px;
+            line-height: 40px;
+            position: absolute;
+            color: #5b6460;
+            top: 110px;
+            left: 110px;
+        }
+
+        .description {
+            width: 465px;
+            font-weight: 300;
+            line-height: 30px;
+            position: absolute;
+            color: #333333;
+            top: 224px;
+            left: 110px;
+        }
+
+        .link {
+            font-style: italic;
+            position: absolute;
+            color: #5b6460;
+            top: 471px;
+            left: 110px;
+        }
+    </style>
+</head>
+<body>
+    <main class="location">
+        <div class="map">
+            <div class="mask"></div>
+            <svg class="circle1" width="176" height="176" viewBox="0 0 176 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle opacity="0.15" cx="88" cy="88" r="88" fill="white"/>
+            </svg>
+            <svg class="circle2" width="134" height="134" viewBox="0 0 134 134" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle opacity="0.25" cx="67" cy="67" r="67" fill="white"/>
+            </svg>
+            <svg class="circle3" width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="48" cy="48" r="48" fill="white"/>
+            </svg>
+            <p class="map-text">We are here</p>
+        </div>
+        <article class="about">
+            <h3 class="heading3">The Forest</h3>
+            <p class="description">
+                Løvtag’s three exclusive and comfortable cabins, Et, Ro and Ly, are designed by architect Sigurd Larsen.
+                They all have an open space with a double bed, a double sofa bed, kitchen, separate toilet and an outdoor shower.
+                On the roof, surrounded by treetops, there is a terrace, which is about nine meters above ground.
+                The cottages are built around tall, old trees that go through the entire cottage from floor to ceiling.
+            </p>
+            <a class="link" href="#">Read More</a>
+        </article>
+    </main>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐️ Fetchеполифилл</title>
+</head>
+
+<body>
+    <div class="container"></div>
+    <script>
+        const container = document.querySelector('.container');
+
+        function myFetch(url) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.addEventListener('load', function (event) {
+                    event.target.responseText ? resolve(event.target.responseText) : reject('Something went wrong. Please try again.')
+                });
+
+                xhr.send();
+            });
+        }
+        //проверка
+        myFetch('./emoji.json')
+            .then(response => JSON.parse(response))
+            .then(result => {
+                container.textContent = result[Math.floor(Math.random() * result.length)].emoji;
+            })
+            .catch((error) => container.textContent = error)
+
+    </script>
+</body>
+
+</html>

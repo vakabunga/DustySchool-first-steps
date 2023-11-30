@@ -1,0 +1,27 @@
+.text {
+    font-size: 20px;
+    line-height: 24px;
+    color: #334723;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+.txt-decor {
+    text-decoration: underline;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.column {
+    width: 200px;
+    text-align:justify;
+}
+
+.logo {
+    font-size: 80px;
+    text-align: center;
+    font-family: Unbounded, Helvetica, sans-serif;
+}
+
+.merge {
+    letter-spacing: -50px;
+}

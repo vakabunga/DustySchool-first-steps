@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Золотые цитаты Dusty Frontend School</title>
+    <style>
+        .container {
+            text-align: center;
+        }
+
+        .img {
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="quote-of-the-day">Золотая цитата сего дня</button>
+        <button class="random-quote">Золотая цитата случайного дня</button>
+        <p class="response-qoute"></p>
+    </div>
+    <script src="./api-ninjas-data.js"></script>
+    <script>
+        const container = document.querySelector('.container');
+        const quoteOfTheDayButton = document.querySelector('.quote-of-the-day');
+        const randomeQuote = document.querySelector('.random-quote');
+        const responseQuoteField = document.querySelector('.response-qoute');
+        const randomImage = document.createElement('img');
+        randomImage.classList.add('img');
+
+        function getQuote(mode) {
+            fetch(`https://zenquotes.io?api=${mode}`)
+                .then(response => response.json())
+                .then((data) => {
+                    responseQuoteField.innerHTML = data[0].h;
+                    getImage();
+                })
+                .catch(error => console.log(error))
+        }
+
+        function getImage() {
+            fetch(`https://api.unsplash.com/photos/random?client_id=${clientID.client_id}&orientation=landscape`)
+                .then(response => response.json())
+                .then(data => {
+                    randomImage.src = data.urls.small;
+                    container.appendChild(randomImage);
+                })
+        }
+
+        quoteOfTheDayButton.addEventListener('click', () => { getQuote('today') });
+        randomeQuote.addEventListener('click', () => { getQuote('random') });
+
+    </script>
+</body>
+</html>

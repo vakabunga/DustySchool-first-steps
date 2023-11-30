@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полёт шмеля</title>
+    <style>
+        .cell {
+            width: 50px;
+            height: 50px;
+            margin: 1px;
+            border: 1px dotted #aaa;
+            display: inline-block;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        .container {
+            width: 194px;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+
+        .arrow-pic {
+            width: 50px;
+        }
+
+        .bumblebee {
+            position: fixed;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cell hidden"></div>
+        <div class="cell up">
+            <img class="arrow-pic" src="./pics/arrow-up.png" alt="">
+        </div>
+        <div class="cell hidden"></div>
+        <div class="cell left">
+            <img class="arrow-pic" src="./pics/arrow-left.png" alt="">
+        </div>
+        <div class="cell down">
+            <img class="arrow-pic" src="./pics/arrow-down.png" alt="">
+        </div>
+        <div class="cell right">
+            <img class="arrow-pic" src="./pics/arrow-right.png" alt="">
+        </div>
+    </div>
+    <img class="bumblebee" src="./pics/bee.png" alt="">
+
+    <script>
+            const arrowUpButton = document.querySelector('.up');
+            const arrowDownButton = document.querySelector('.down');
+            const arrowLeftButton = document.querySelector('.left');
+            const arrowRightButton = document.querySelector('.right');
+            const bumblebee = document.querySelector('.bumblebee');
+            const units = 'px';
+            let offsetUp = 0;
+            let offsetLeft = 0;
+            bumblebee.style.top = offsetUp + units;
+            bumblebee.style.left = offsetLeft + units;
+
+            function runBeeRun(event) {
+                if (event.currentTarget === arrowUpButton || event.keyCode === 38) {
+                    offsetUp -= 10;
+                    bumblebee.style.top = offsetUp + units;
+                }
+                if (event.currentTarget === arrowLeftButton || event.keyCode === 37) {
+                    offsetLeft -= 10;
+                    bumblebee.style.left = offsetLeft + units;
+                }
+                if (event.currentTarget === arrowRightButton || event.keyCode === 39) {
+                    offsetLeft += 10;
+                    bumblebee.style.left = offsetLeft + units;
+                }
+                if (event.currentTarget === arrowDownButton || event.keyCode === 40) {
+                    offsetUp += 10;
+                    bumblebee.style.top = offsetUp + units;
+                }
+            }
+
+            arrowUpButton.addEventListener('click', runBeeRun);
+            arrowDownButton.addEventListener('click', runBeeRun);
+            arrowLeftButton.addEventListener('click', runBeeRun);
+            arrowRightButton.addEventListener('click', runBeeRun);
+            window.addEventListener('keydown', runBeeRun);
+    </script>
+</body>
+
+</html>

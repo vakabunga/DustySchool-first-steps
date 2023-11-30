@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рассадка по парам</title>
+</head>
+<body>
+    <script>
+        const someObject = {
+            cool: 'yes',
+            option: true,
+        }
+
+        function objToArray (obj) {
+            return Object.entries(obj).reduce(function (arrayOfObjects, subArray) {
+                arrayOfObjects.push({[subArray[0]]: subArray[1]});
+                return arrayOfObjects;
+            }, []);
+        }
+
+        console.log(objToArray(someObject));
+    </script>
+</body>
+</html>

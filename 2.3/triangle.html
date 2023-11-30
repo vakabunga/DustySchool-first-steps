@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Какой ты треугольник сегодня</title>
+</head>
+<body>
+    <script>
+        function isTriangleReal(a, b, c) {
+            return +a > 0 && +b > 0 && +c > 0;
+        }
+
+        function isTriangleIsosceles(a, b, c) {
+            return a === b || b === c || c === a;
+        }
+
+        function isTriangleEquilateral(a, b, c) {
+            return a === b && b === c && c === a;
+        }
+
+        function isTriangleRight(a, b, c) {
+            return a ** 2 === b ** 2 + c ** 2 || b ** 2 === a ** 2 + c ** 2 || c ** 2 === b ** 2 + a ** 2;
+        }
+
+        function testTriangle(a, b, c) {
+            console.log(`Треугольник со сторонами a = ${a}, b = ${b} и c = ${c}: \r\n Существует: ${isTriangleReal(a, b, c)} \r\n Равнобедренный: ${isTriangleIsosceles(a, b, c)} \r\n Равносторонний: ${isTriangleEquilateral(a, b, c)} \r\n Прямоугольный: ${isTriangleRight(a, b, c)}`)
+        }
+    </script>
+</body>
+</html>

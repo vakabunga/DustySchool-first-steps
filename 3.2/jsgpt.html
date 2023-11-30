@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>JSGpt</title>
+    <style>
+        .submit-form {
+            margin: 20rem auto;
+            text-align: center;
+            background-color: inherit;
+            width: 500px;
+        }
+
+        .button-form {
+            background-color: inherit;
+        }
+
+        .error {
+            color: #f00;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body class="page">
+    <form class="submit-form" action="">
+        <input class="input-field" list="commands" type="text">
+        <datalist id="commands">
+            <option value="/вперед"></option>
+            <option value="/назад"></option>
+            <option value="/скопируй"></option>
+            <option value="/обнови"></option>
+            <option value="/переадресуй на"></option>
+        </datalist>
+        <button class="button-form">Выполнить</button>
+        <div class="copy-ok hidden">Текст скопирован</div>
+        <div class="error hidden">Искусственный интеллект еще слишком искусственный. Используйте другую команду.</div>    
+    </form>
+    <script>
+        const submitForm = document.querySelector('.submit-form');
+        const inputField = document.querySelector('.input-field');
+        const buttonForm = document.querySelector('.button-form');
+        const copyOk = document.querySelector('.copy-ok');
+        const errorMsg = document.querySelector('.error');
+
+        buttonForm.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (inputField.value.startsWith('/вперед')) {
+                history.forward();
+                return;
+            }
+
+            if (inputField.value.startsWith('/назад')) {
+                history.back();
+                return;
+           }
+
+            if (inputField.value.startsWith('/скопируй')) {
+                navigator.clipboard.writeText(inputField.value.slice(10));
+                copyOk.classList.toggle('hidden');
+                setTimeout(function() {
+                    copyOk.classList.toggle('hidden');
+                }, 1000);
+                inputField.value = '';
+                return;
+            }
+
+            if (inputField.value.startsWith('/обнови')) {
+                location.reload();
+                return;
+            }
+
+            if (inputField.value.startsWith('/переадресуй на')) {
+                location.assign(inputField.value.slice(16));
+                return;
+            }
+
+            errorMsg.classList.toggle('hidden');
+
+            setTimeout(function() {
+                    errorMsg.classList.toggle('hidden');
+                }, 2000);
+
+                inputField.value = '';
+        });
+    </script>
+</body>
+</html>

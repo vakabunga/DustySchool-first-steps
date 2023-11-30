@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐️ Быки и коровы</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body class="page">    
+    <h2 class="text">Игра "Быки и коровы"</h2>
+    <h4 class="text">Правила игры</h4>
+    <div>
+        <p class="text">Компьютер задумывает четыре различные цифры из 0,1,2,...9. Игрок делает ходы, чтобы узнать эти цифры и их порядок.</p>
+        <p class="text">Каждый ход состоит из четырёх цифр, 0 может стоять на первом месте.</p>
+        <p class="text">В ответ компьютер показывает число отгаданных цифр, стоящих на своих местах (количество быков) и число отгаданных цифр,
+            стоящих не на своих местах (количество коров).</p>
+    </div>
+    <h4 class="text">Пример</h4>
+    <div>
+        <p class="text">Компьютер задумал 0834.</p>
+        <p class="text">Игрок сделал ход 8134.</p>
+        <p class="text">Компьютер ответил: 2 быка (цифры 3 и 4) и 1 корова (цифра 8)</p>
+    </div>
+    <div class="game">
+        <div>
+            <div id="gameForm">
+                <input type="text" name="" id="try">
+                <button id="button">Cделать ход</button>
+            </div>
+            <div id="error" class="error hidden">В чсиле должно быть 4 цифры и они не должны повторяться</div>
+            <div id="newGameForm" class="hidden">
+                <p class="text">Ура! Вы победили! Сыграть еще раз?</p>
+                <button id="newGameButton">Начать заново!</button>
+            </div>
+        </div>
+        <div id="answers"></div>
+    </div>
+
+    <script src="./src/index.js"></script>
+</body>
+</html>

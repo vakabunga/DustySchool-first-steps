@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log('14 times measure, 1 time cutoff');
+        console.log('----------------------------------------------------------------');
+        let anyArray = [4, 1, 6, 1, 5, 11, 6, 5, 7];
+        console.log(anyArray);
+        function noMinNoMax(array) {
+            let maxValue = array[0];
+            let minValue = array[0];
+            array.forEach(function(item) {
+                if (item <= minValue) {
+                    minValue = item;
+                } else if (item >= maxValue) {
+                    maxValue = item;
+                }
+            });
+            array.splice(array.indexOf(minValue), 1);
+            array.splice(array.indexOf(maxValue), 1);
+            return array;
+        }
+        console.log(noMinNoMax(anyArray));
+        // anyArray.del[minIndex];
+        // anyArray.delete[maxIndex];
+        console.log('----------------------------------------------------------------');
+        console.log('odds');
+        console.log('----------------------------------------------------------------');
+        function oddsFilter(array) {
+            return array.filter(function(item) {
+                return item % 2 !== 0;
+            });
+        }
+        console.log(oddsFilter(anyArray));
+        console.log('----------------------------------------------------------------');
+        console.log('neighbors');
+        console.log('----------------------------------------------------------------');
+        function neighborsSumFilter(array) {
+            const sumArray = [];
+            for (let i = 0; i < array.length; i += 2) {
+                sumArray.push(+array[i] + +(array[i + 1] ? array[i + 1] : 0));
+            }
+            return sumArray;
+        }
+        console.log(neighborsSumFilter(anyArray));
+        console.log('----------------------------------------------------------------');
+        console.log('trends');
+        console.log('----------------------------------------------------------------');
+        function neighborsSubFilter(array) {
+            const subtractArray = [];
+            for (let i = 1; i < array.length; i++) {
+                subtractArray.push(array[i] - array[i - 1]);
+            }
+            return subtractArray;
+        }
+        console.log(neighborsSubFilter(anyArray));
+    </script>
+</body>
+</html>

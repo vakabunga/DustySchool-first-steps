@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Хрустальный API</title>
+    <style>
+        .error {
+            color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Введите имя и узнайте свой возраст!</h1>
+    <form action="submit" class="form-submit">
+        <label for="name">
+            <input class="input-name" type="text" id="name" placeholder="Введите имя на латинице">
+            <button>Узнать возраст</button>
+        </label>
+    </form>
+    <p class="result"> </p>
+
+    <script>
+        const formSubmit = document.querySelector('.form-submit');
+        const inputName = document.querySelector('.input-name');
+        const resultContainer = document.querySelector('.result');
+        const cyrillicPattern = /^\p{Script=Cyrillic}+$/u;
+
+        function checkTheWord(age) {
+            const digit = age % 10;
+            if ([2, 3, 4].includes(digit)) {
+                return 'года';
+            } else if (digit === 1) {
+                return 'год';
+            }
+            return 'лет';
+        }
+
+        formSubmit.addEventListener('submit', (event) => {
+            event.preventDefault();
+            resultContainer.classList.remove('error');
+            resultContainer.textContent = '';
+            const userName = inputName.value;
+            
+            if (cyrillicPattern.test(userName) || (userName === '')) {
+                resultContainer.classList.add('error');
+                resultContainer.textContent = 'Введите имя латинскими буквами';
+                return;
+            }
+
+            inputName.value = '';
+
+            fetch(`https://api.agify.io/?name=${userName}`)
+                .then(response => response.json())
+                .then((data) => {
+                    if (data.age === null) {
+                        resultContainer.textContent = 'К сожалению невозможно подсчитать возраст для этого имени';
+                    } else {
+                        resultContainer.textContent = `Возраст человека с именем ${data.name}: ${data.age} ${checkTheWord(data.age)}`;
+                    }
+                })
+                .catch((error) => {
+                    resultContainer.textContent = error;
+                });
+        })
+    </script>
+</body>
+
+</html>

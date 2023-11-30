@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>О-оу-и-я-и-ё промис</title>
+</head>
+
+<body>
+    <button class="button">Get battery info</button>
+    <div class="result"> </div>
+    <script>
+        const button = document.querySelector('.button');
+        const resultElement = document.querySelector('.result');
+
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            navigator.getBattery()
+                .then((result) => {
+                    resultElement.textContent = `Уровень заряда ${Math.round(result.level * 100)}%, ${result.charging ? 'заряжается' : 'не заряжается'}. 
+                    Время работы ${result.dischargingTime === Infinity ? 'неограниченное количество' : Math.floor(result.dischargingTime / 3600)} часов ${result.dischargingTime === Infinity ? '00' : (result.dischargingTime - Math.floor(result.dischargingTime / 3600) * 3600) / 60} минут`;
+                });
+        });
+    </script>
+</body>
+
+</html>

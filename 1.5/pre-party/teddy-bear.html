@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .page {
+            background-color: #f5f5f5;
+        }
+
+        .row {
+            font-family: Nunito, Helvetica, sans-serif;
+            width: 1140px; /* Назначаю ширину, чтобы не ломалась верстка при уменьшении ширины окна браузера */
+            position: relative; /* обозначаем блок, относительно которого будем позиционировать мишку */
+            display: flex; /* Объявляем контейнер flex, чтобы выравнять текст в последнем блоке по центру */
+            align-items: center; /* выравниваем содержимое flex-контейнеров вертикально по центру */
+        }
+
+        .girl {
+            width: 472px; /* задаем ширину контейнера, чтобы выдна была картинка фона */
+            height: 333px; /* задаем высоту контейнера чтобы видна была картинка фона */
+            background-color: #7bbb8d; /* задаем цвет фона */
+            border-radius: 20px; /* задаем скругление углов контейнера */
+            background-image: url('./pics/girl.png'); /* задаем фоновую картинку */
+            background-position: bottom; /* позиционируем фоновую картинку к нижней границе контейнера */
+            background-position-x: 33px; /* задаем отступ слева от границы контейнера */
+            background-repeat: no-repeat; /* запрещаем повторять фоновую картинку */
+        }
+
+        .teddy {
+            position: absolute; /* задаем возможность позиционирования блока относительно родителя */
+            bottom: -81px; /* фиксируем отступ от нижнего края */
+            left: 387px; /* фиксируем отсутп от левого края */
+            display: flex; /* задаем флекс-контейнер для позиционирования флекс-элементов внутри него */
+            flex-direction: column; /* задаем направление расположения флекс-контейнеров по вертикальной оси сверху вниз */
+            align-items: end; /* задаем выравнивание флекс-контейнеров по правому краю */
+        }
+
+        .teddy-speech {
+            color: #664535; /* задаем цвет текста */
+            background-color: #f0f0ee; /* задаем цвет фона контейнера */
+            font-size: 20px;
+            line-height: 27px;
+            border-radius: 7.6px 7.6px 7.6px 0px;
+            width: 156px; /* задаем ширину контейнера */
+            height: 107px; /* задаем высоту контейнар */
+            text-align: center; /* выравнивает текст по центру */
+            margin: 0; /* удаляем ненужные внешние отступы */
+        }
+
+        .heading3 {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 48px;
+            text-align: left;
+            display: -webkit-inline-box; /* задаем поведение контейнера */
+            -webkit-box-orient: vertical; /* задаем направление отслеживания превышения контекнта */
+            -webkit-line-clamp: 4; /* задаем максимальное количество строк, после которых контент должен обрезаться */
+            overflow: hidden; /* прячем невлезающий в контейнер контент */
+            width: 537px; /* задаем ширину контейнера */
+            box-sizing: border-box; /* задаем параметр, который учитывает внутринние отступы и границы при расчете ширины */
+            padding-left: 155px; /* задаем отступ от левого контейнера */
+        }
+
+        .heading3-wow {
+            color: #75b5c8; /* задаем цвет текста */
+            font-style: normal; /* убираем курсив */
+        }
+
+        .heading3-underline {
+            text-decoration: underline; /* выставляем подчеркивание */
+        }
+    </style>
+    <title>Мишка, плюшевый мишка</title>
+</head>
+<body class="page">
+    <div class="row">
+        <div class="girl">
+        </div>
+        <h3 class="heading3">
+            Smart Teddy asks kid and... <em class="heading3-wow">Wow! Kid <span class="heading3-underline">actually</span> does it!</em>
+        </h3>
+        <div class="teddy">
+            <p class="teddy-speech">Well done! you are doing well!</p>
+            <img class="teddy-img" src="./pics/teddy.png" alt="teddy bear">
+        </div>
+
+    </div>
+</body>
+</html>

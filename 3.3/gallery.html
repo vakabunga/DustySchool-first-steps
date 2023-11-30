@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <style>
+        .page {
+            position: relative;
+            height: 100%;
+        }
+
+        .image-small {
+            width: 300px;
+            transition: transform 1s;
+            transform: scale(1, 1);
+        }
+
+        .image-big {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            transition: transform 1s;;
+            transform: scale(2, 2);
+            z-index: 100;
+        }
+    </style>
+    <title>Третьяковка</title>
+</head>
+<body class="page">
+    <script>
+        const page = document.querySelector('.page');
+        const imageWrapper = document.createElement('div');
+        const imageFirst = document.createElement('img');
+        const imageSecond = document.createElement('img');
+        const imageThird = document.createElement('img');
+
+        imageFirst.src = './img/picture1.avif';
+        imageSecond.src = './img/picture2.avif';
+        imageThird.src = './img/picture3.avif';
+
+        imageFirst.classList.add('image-small');
+        imageSecond.classList.add('image-small');
+        imageThird.classList.add('image-small');
+        
+        page.appendChild(imageWrapper);
+        imageWrapper.appendChild(imageFirst);
+        imageWrapper.appendChild(imageSecond);
+        imageWrapper.appendChild(imageThird);
+
+        const emojiesArray = Array.from(imageWrapper.children);
+
+        imageWrapper.addEventListener('click', function({ target }) {
+            if (target.classList.contains('image-big')) {
+                target.classList.toggle('image-big');
+                return;
+            }
+
+            for (const child of emojiesArray) {
+                if (child.classList.contains('image-big')) {
+                    child.classList.toggle('image-big');
+                }
+            }
+
+            if (target.classList.contains('image-small')) {
+                target.classList.toggle('image-big');
+            }
+        });
+    </script>
+</body>
+</html>

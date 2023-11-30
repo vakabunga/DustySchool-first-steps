@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Converter</title>
+</head>
+<body>
+    <script>
+        //⭐️ Конвертер цвета
+        const colorCode = prompt('Введите номер цвета в нотации HEX-кода, но без #');
+        let colorCodeDec = +('0x' + colorCode);
+        const blueNumber = colorCodeDec%(16**2);
+        const greenNumber = Math.floor(colorCodeDec / (16**2)) % (16**2);
+        const redNumber = Math.floor(colorCodeDec / (16**4)) % (16**2);
+        console.log(`Цвет в формате RGB: R:${redNumber}, G:${greenNumber}, B:${blueNumber}`);
+    </script>
+</body>
+</html>

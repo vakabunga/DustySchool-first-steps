@@ -1,0 +1,100 @@
+.enter-card {
+border: none;
+box-sizing: border-box;
+border-bottom: 1px solid;
+border-color: rgba(66, 187, 203, 1);
+background-color: transparent;
+padding: 6px;
+padding-right: 10px;
+outline: none;
+font-family: 'Roboto', 'Times New Roman', sans-serif;
+font-weight: 400;
+font-style: normal;
+font-size: var(--text-size-input);
+color: var(--color-black-500);
+}
+
+/* .label-password {
+    word-spacing: 10px;
+    color: rgba(161, 157, 157, 0.973);
+    margin-bottom: 5px;
+    font-weight: 100;
+    font-size: 12px;
+} */
+
+.label-card-enter {
+    color: rgba(161, 157, 157, 0.973);
+    margin-bottom: 5px;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.wrapperenter-card {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    
+}
+
+.wrapperbutton-card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 110px;
+    width: 90%;
+    justify-content: flex-start;
+}
+
+.wrapper-name-card-add {
+    margin-left: 0;
+}
+.wrapper-number-card-add {
+    margin-right: 60px;
+    margin-top: 20px;
+}
+.wrapper-validity-period-add {
+    margin-right: 70px;
+}
+
+.wrapper-cvv-card-add {
+    margin-right: 5px;
+}
+
+.wrapper-card-holder-add {
+    margin-right: 45px;
+}
+.wrapper-validity-period-cvv {
+   display: flex; 
+   align-items: center;
+   gap: 50px;
+   margin-top: 20px;
+}
+
+.wrapper-card-note-add {
+   margin-right: 45px;
+   margin-top: 20px;
+}
+
+.wrapper-card-pin-add {
+    margin-right: 45px;
+}
+
+.wrapper-cvv-card-add {
+    margin-right: 45px;
+}
+
+.wrapper-case {
+    display: flex;  
+}
+
+.enter-validity-period {
+    width: 200%;
+}
+
+.enter-cvv-period {
+    width: 103%;
+}

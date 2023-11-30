@@ -1,0 +1,159 @@
+.form {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding: 0 15px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: clip;
+}
+
+.enter {
+    margin: 0;
+    border: none;
+    box-sizing: border-box;
+    width: 100%;
+    border-bottom: 1px solid;
+    border-color: rgba(66, 187, 203, 1);
+    background-color: transparent;
+    padding: 6px;
+    padding-right: 10px;
+    outline: none;
+    font-family: 'Roboto', 'Times New Roman', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--text-size-input);
+    color: var(--color-black-500);
+}
+
+.wrapperenter {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.wrapperUrlCase {
+    display: flex;
+}
+
+.wrapperPasswordCase {
+    display: flex;
+}
+
+.urlIconCase {
+    display: flex;
+    border-bottom: 1px solid rgba(66, 187, 203, 1);
+    align-items: center;
+}
+
+.urlIcon {
+    font-size: 20px;
+    color: var(--color-black-300);
+    padding: 0px 10px;
+}
+
+.passwordIcon {
+    font-size: 15px;
+    color: var(--color-black-300);
+    padding: 10px;
+}
+
+.wrapperbutton {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.tittle-add {
+    margin-bottom: 20px;
+}
+
+.closeAdd {
+    position: absolute;
+    width: 12px;
+    border: none;
+    background-color: transparent;
+    margin-left: 305px;
+    margin-top: 25px;
+}
+
+.openAdd {
+    position: absolute;
+    width: 12px;
+    border: none;
+    background-color: transparent;
+    margin-left: 305px;
+    margin-top: 25px;
+
+}
+
+.webAdd {
+    width: 100px;
+    height: 70px;
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    margin-left: 250px;
+    margin-top: -10px;
+
+}
+
+.wrapper-range {
+    display: flex;
+    flex-direction: column;
+}
+
+.range-text {
+    color: lightseagreen;
+    margin-left: 10px;
+}
+
+.copy-image {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 6px;
+    right: 0;
+    cursor: pointer;
+}
+
+.label-password {
+    color: var(--color-title);
+    font-size: var(--text-size-hint);
+    height: 13px;
+}
+
+.button {
+    font-family: 'Roboto', 'Times New Roman', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: var(--text-size-buttons);
+    color: var(--color-white-500);
+    background-color: var(--background-active-button);
+    border: 0;
+    border-radius: 4px;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+}
+
+.text-back {
+    box-sizing: border-box;
+    margin-bottom: auto;
+    margin-top: auto;
+    opacity: 0.2;
+    color: var(--background-active-button);
+    text-align: center;
+    font-family: 'Roboto', 'Arial Narrow', Arial, sans-serif;
+    font-size: 42px;
+    font-weight: 100;
+
+}
+
+.editable-background {
+    background-color: var(--color-white-500);
+}

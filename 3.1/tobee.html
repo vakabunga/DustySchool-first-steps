@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полёт шмеля</title>
+    <style>
+        .cell {
+            width: 50px;
+            height: 50px;
+            margin: 1px;
+            border: 1px dotted #aaa;
+            display: inline-block;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+
+        .container {
+            width: 194px;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+
+        .arrow-pic {
+            width: 50px;
+        }
+
+        .bumblebee {
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cell hidden"></div>
+        <div id="up" class="cell">
+            <img class="arrow-pic" src="./pics/arrow-up.png" alt="">
+        </div>
+        <div class="cell hidden"></div>
+        <div id="left" class="cell">
+            <img class="arrow-pic" src="./pics/arrow-left.png" alt="">
+        </div>
+        <div id="down" class="cell">
+            <img class="arrow-pic" src="./pics/arrow-down.png" alt="">
+        </div>
+        <div id="right" class="cell">
+            <img class="arrow-pic" src="./pics/arrow-right.png" alt="">
+        </div>
+    </div>
+    <img id="bumblebee" class="bumblebee" src="./pics/bumblebee.png" alt="">
+
+    <script>
+        const arrowUpButton = document.getElementById('up');
+        const arrowDownButton = document.getElementById('down');
+        const arrowLeftButton = document.getElementById('left');
+        const arrowRightButton = document.getElementById('right');
+        const bumblebee = document.getElementById('bumblebee');
+        const units = 'px';
+        let offsetUp = 0;
+        let offsetLeft = 0;
+        bumblebee.style.top = offsetUp + units;
+        bumblebee.style.left = offsetLeft + units;
+
+        arrowUpButton.onclick = function() {
+            offsetUp -= 10;
+            bumblebee.style.top = offsetUp + units;
+        }
+
+        arrowDownButton.onclick = function() {
+            offsetUp += 10;
+            bumblebee.style.top = offsetUp + units;
+        }
+
+        arrowLeftButton.onclick = function() {
+            offsetLeft -= 10;
+            bumblebee.style.left = offsetLeft + units;
+        }
+
+        arrowRightButton.onclick = function() {
+            offsetLeft += 10;
+            bumblebee.style.left = offsetLeft + units;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐️ Нецензурщина</title>
+</head>
+<body>
+    <script>
+        const strokeToWords = [];
+        //let userStroke = prompt('Введите текст и я проверю сколько в нем нецензурных слов');
+        const stroke = 'прокоп пошел домой клопо';
+
+        function censored(text) {
+            const textArray = text.split(' ');
+            let censoredWords = 0;
+            textArray.forEach(element => {
+                let wordCounter = 0;
+
+                for (let i = 0; i < element.length; i++) {
+                    let counter = 0;
+
+                    for (let j = 0; j < element.length; j++) {
+
+                        if (element[i] === element[j]) {
+                        counter += 1;
+                        }
+                    }
+
+                    if (counter % 2 === 0) {
+                        wordCounter += 1;
+                        break;
+                    }
+                }
+                censoredWords += wordCounter;
+            })
+            console.log(`В тексте было использовано нецензурных слов: ${censoredWords}`);
+        }
+        
+        censored(stroke);
+    </script>
+</body>
+</html>

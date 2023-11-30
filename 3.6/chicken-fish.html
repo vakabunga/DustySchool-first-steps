@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курица или рыба?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <script src="https://kit.fontawesome.com/58b559da9d.js" crossorigin="anonymous"></script>
+    <style>
+        .heading-1 {
+            text-transform: uppercase;
+        }
+
+        .heading-2 {
+            font-size: 20px;
+        }
+
+        .registration-form {
+            position: relative;
+        }
+
+        .seat-number-input {
+            width: 30px;
+            margin-left: 4px;
+            margin-right: 4px;
+        }
+
+        .seat-number-input__error {
+            border-color: #ff0000;
+        }
+
+        .meal-wrapper {
+            margin: 20px 0;
+        }
+
+        .label {
+            display: block;
+            padding-left: 0;
+        }
+
+        .input {
+            vertical-align: sub;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .meal-choice {
+            margin-left: 25px;
+            margin-top: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: 2s;
+        }
+
+        .meal-choice-appear {
+            max-height: 100px;
+        }
+
+        .hint {
+            position: absolute;
+            padding: 3px;
+            width: 300px;
+            top: 0;
+            left: 350px;
+            border: 1px dashed #adadad;
+            background-color: #fff;
+        }
+
+        .hint-text {
+            font-size: 10px;
+            margin: 0;
+            line-height: 10px;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <h1 class="heading-1">Авиакомпания Кукуха Эйрлайнс</h1>
+    <h2 class="heading-2">Пожалуйста, заполните форму ниже для регистрации на рейс</h2>
+    <form class="registration-form">
+        <label for="seat">
+            <input class="seat-number-input input" type="input" value="" maxlength="3" id="seat">Введите номер посадочного места
+        </label>
+        <i class="fa-regular fa-circle-question"></i>
+        <div class="meal-wrapper">
+            <label class="label" for="meal-checkbox">
+                <input class="input input-checkbox" type="checkbox" name="meal" id="meal-checkbox">Питание на борту
+            </label>
+            <div class="meal-choice">
+                <label class="label" for="chicken">
+                    <input class="input meal" type="radio" id="chicken" name="meal-choice">Курица
+                </label>
+                <label class="label" for="fish">
+                    <input class="input meal" type="radio" id="fish" name="meal-choice">Рыба
+                </label>
+            </div>
+        </div>
+        <button class="button" disabled="true">Зарегистрироваться на рейс</button>
+        <div class="hint hidden">
+            <p class="hint-text">Введите номер билета в формате 00А, где 00 - цифровое обозначение номер места, А -
+                буквенное (A, B, C, D, E, F)</p>
+            <p class="hint-text">Обращаем ваше внимание, что проверка занятости выбранного места приложением не
+                предусмотрена. Поэтому при посадке место может быть изменено</p>
+            <p class="hint-text">Данная функция будет добавлена в будущем. Приносим ищвинения за доставленные неудобства
+            </p>
+        </div>
+    </form>
+</body>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const body = document.querySelector('.body');
+        const seatNumberInput = document.querySelector('.seat-number-input');
+        const inputCheckbox = document.querySelector('.input-checkbox');
+        const mealChoice = document.querySelector('.meal-choice');
+        const mealInputs = document.querySelectorAll('.meal');
+        const button = document.querySelector('.button');
+        const question = document.querySelector('.fa-circle-question');
+        const hint = document.querySelector('.hint');
+        const registrationForm = document.querySelector('.registration-form');
+        let status = false;
+        const dataForm = {};
+
+        seatNumberInput.addEventListener('blur', (e) => {
+            const seatNumber = e.target.value;
+
+            if (!seatNumber.match(/^[0-9]{2}[ABCDEF]{1}/gm)) {
+                seatNumberInput.classList.add('seat-number-input__error');
+                status = false;
+            } else {
+                seatNumberInput.classList.remove('seat-number-input__error');
+                status = true;
+            }
+
+            formCheck();
+        })
+
+        inputCheckbox.addEventListener('input', (e) => {
+            if (e.target.checked) {
+                mealChoice.classList.add('meal-choice-appear');
+                mealChoice.classList.remove('meal-choice-disappear');
+            } else {
+                mealChoice.classList.add('meal-choice-disappear');
+                mealChoice.classList.remove('meal-choice-appear');
+
+                mealInputs.forEach((element) => {
+                    element.checked = false;
+                });
+            }
+
+            formCheck();
+        });
+
+        mealChoice.addEventListener('input', (e) => {
+            if (e.target.classList.contains('meal')) {
+                formCheck();
+            }
+        });
+
+        function formCheck() {
+            const mealStatus = Array.from(mealInputs).every((element) => element.checked === false);
+
+            if ((!inputCheckbox.checked && status && mealStatus) || (inputCheckbox.checked && status && !mealStatus)) {
+                button.disabled = false;
+            } else {
+                button.disabled = true;
+            }
+        };
+
+        registrationForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const inputs = registrationForm.querySelectorAll('.input');
+
+            for (const input of inputs) {
+                const key = input.id;
+                dataForm[key] = input.type === 'checkbox' || input.type === 'radio' ? input.checked : input.value;
+            }
+
+            document.querySelector('.heading-2').classList.add('hidden');
+            registrationForm.classList.add('hidden');
+
+            const successMessage = document.createElement('h3');
+            successMessage.textContent = 'Поздравляем, Вы успешно зарегистрировались на рейс!';
+            body.appendChild(successMessage);
+
+            console.log(dataForm);
+        });
+
+        question.addEventListener('mouseover', (e) => {
+            hint.classList.toggle('hidden');
+        });
+
+        question.addEventListener('mouseout', (e) => {
+            hint.classList.toggle('hidden');
+        });
+    });
+
+</script>
+
+</html>

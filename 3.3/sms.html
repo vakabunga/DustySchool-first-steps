@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Отправь смс</title>
+    <style>
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            width: 310px;
+            margin: auto;
+        }
+
+        .text-area-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100px;
+        }
+
+        .sms-text-area {
+            margin: 0;
+            resize: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sms-text-area-length {
+            position: absolute;
+            bottom: 0;
+            right: 5px;
+            color: #9e9e9e;
+        }
+
+        .phone-buttons {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background-color: #dddddd;
+            box-sizing: border-box;
+            text-align: center;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .buttons-text {
+            line-height: 50px;
+            margin: 0;
+        }
+
+        .buttons-number {
+            line-height: 50px;
+            font-size: 40px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class="page">
+    <script>
+        const page = document.querySelector('.page');
+
+        const phoneButtons = {
+            buttonNumbers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+
+            buttonsTextNumbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'],
+
+            buttonsTextSymbols: ['-_', 'АБВГ', 'ДЕЁЖЗ', 'ИЙКЛ', 'МНОП', 'РСТУ', 'ФХЦЧ', 'ШЩЪЫ', 'ЬЭЮЯ', '.,', '+|_|', '?!']
+        };
+
+        const wrapper = document.createElement('div');
+        const textAreaWrapper = document.createElement('div');
+        const smsTextArea = document.createElement('textarea');
+        const smsTextAreaLength = document.createElement('div');
+        smsTextArea.disabled = true;
+
+        wrapper.classList.add('wrapper');
+        textAreaWrapper.classList.add('text-area-wrapper');
+        smsTextArea.classList.add('sms-text-area');
+        smsTextAreaLength.classList.add('sms-text-area-length');
+
+        page.appendChild(wrapper);
+        wrapper.appendChild(textAreaWrapper);
+        textAreaWrapper.appendChild(smsTextArea);
+        textAreaWrapper.appendChild(smsTextAreaLength);
+
+        const textAreaValueListening = function () {
+            if (smsTextArea) {
+                smsTextAreaLength.textContent = smsTextArea.value.length;
+            }
+        }
+
+        const addClasses = function () {
+            arguments[0].classList.add('phone-buttons');
+            arguments[1].classList.add('buttons-number');
+            arguments[2].classList.add('buttons-text');
+        }
+
+        const addTextContents = function (index) {
+            arguments[1].textContent = phoneButtons.buttonsTextNumbers[index];
+            arguments[2].textContent = phoneButtons.buttonsTextSymbols[index];
+        }
+
+        const addDataSets = function (index) {
+            arguments[1].dataset.buttonPosition = phoneButtons.buttonNumbers[index];
+            arguments[1].dataset.buttonText = phoneButtons.buttonsTextNumbers[index] + phoneButtons.buttonsTextSymbols[index];
+        }
+
+        for (let i = 0; i < phoneButtons.buttonNumbers.length; i++) {
+            const button = document.createElement('div');
+            const buttonNumber = document.createElement('p');
+            const buttonText = document.createElement('p');
+
+            addClasses(button, buttonNumber, buttonText);
+            addTextContents(i, buttonNumber, buttonText);
+            addDataSets(i, button);
+
+            wrapper.appendChild(button);
+            button.appendChild(buttonNumber);
+            button.appendChild(buttonText);
+        }
+
+        const buttons = document.querySelectorAll('.phone-buttons');
+        buttons[10].dataset.buttonText = phoneButtons.buttonsTextNumbers[10] + '+ ';
+        let currentButtonIndex;
+        let clickTimerStart;
+        let previousButtonIndex;
+        let clickTimerEnd;
+        let counter = 0;
+
+        for (const button of buttons) {
+            button.addEventListener('click', function ({ currentTarget }) {
+                inputCharacters(currentTarget);
+            });
+        }
+
+        const inputCharacters = function (targetedButton) {
+            currentButtonIndex = targetedButton.dataset.buttonPosition;
+            currentButtonText = targetedButton.dataset.buttonPosition;
+            clickTimerStart = window.performance.now();
+            currentSmsTextArea = smsTextArea.value;
+
+            smsTextArea.value += targetedButton.dataset.buttonText[0];
+
+            if (currentButtonIndex === previousButtonIndex && clickTimerStart - clickTimerEnd < 1500) {
+                counter === targetedButton.dataset.buttonText.length - 1 ? counter = 0 : counter += 1;
+                smsTextArea.value = currentSmsTextArea.slice(0, -1) + targetedButton.dataset.buttonText[counter];
+            } else {
+                counter = 0;
+            }
+
+            textAreaValueListening();
+            previousButtonIndex = targetedButton.dataset.buttonPosition;
+            clickTimerEnd = window.performance.now();
+        }
+    </script>
+</body>
+
+</html>

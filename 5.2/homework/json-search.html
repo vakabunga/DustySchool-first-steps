@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>JSON-поисковик</title>
+</head>
+
+<body>
+    <form action="none">
+        <input class="input" value="" placeholder="Введите текст для поиска">
+        <button class="button">Найти</button>
+        <div class="status"> </div>
+    </form>
+    <script>
+        const input = document.querySelector('.input');
+        const button = document.querySelector('.button');
+        const status = document.querySelector('.status');
+
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            button.disabled = true;
+            const requestedText = input.value;
+            input.disabled = true;
+            status.textContent = 'Подождите, идёт поиск';
+
+            fetch(`./data/${requestedText}.json`)
+                .then(response => response.json())
+                .then((data) => {
+                    status.textContent = data.result;
+                })
+                .catch((error) => {
+                    console.log(error);
+                    status.textContent = 'Ничего не найдено. Попробуйте поискать что-нибудь другое, менее нужное';
+                })
+                .finally(() => {
+                    button.disabled = false;
+                    input.disabled = false;
+                });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/58b559da9d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>Пятизвездочная домашка</title>
+    <style>
+        .stars-wrapper {
+            margin-top: 100px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="page">
+    <div class="stars-wrapper">
+        <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+    </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelector('.stars-wrapper');
+            const starsArray = Array.from(stars.children);
+
+            const mouseOverStars = function ({ target }) {
+                const starPosition = starsArray.indexOf(target);
+                for (let i = 0; !(i > starPosition); i++) {
+                    starsArray[i].classList.add('fa-solid')
+                }
+            }
+
+            const mouseOutStars = function ({ target }) {
+                const starPosition = starsArray.indexOf(target);
+                for (let i = 0; !(i > starPosition); i++) {
+                    starsArray[i].classList.remove('fa-solid')
+                }
+            }
+
+            stars.addEventListener('mouseover', mouseOverStars);
+            stars.addEventListener('mouseout', mouseOutStars);
+            stars.addEventListener('click', function ({ currentTarget }) {
+                currentTarget.removeEventListener('mouseout', mouseOutStars);
+                currentTarget.removeEventListener('mouseover', mouseOverStars);
+            });  
+        });      
+    </script>
+</body>
+
+</html>

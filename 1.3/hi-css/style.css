@@ -1,0 +1,65 @@
+.document {
+    font-family: Roboto, helvetica, sans-serif;
+    width: 500px;
+}
+
+.text-common {
+    font-size: 11px;
+}
+
+.company {
+    color: #6c64e9;
+    font-size: 20px;
+    line-height: 1.4px;
+    font-weight: 700;
+}
+
+.text-addr {
+    font-size: 10px;
+    font-style: normal;
+    margin: 0;
+}
+
+.text-tel {
+    color: #000000;
+    text-decoration: none;
+}
+
+.text-heading1 {
+    font-size: 34px;
+    color: #283592;
+    font-weight: 400;
+}
+
+.date {
+    color: #e01b84;
+}
+
+.text-heading2 {
+    font-size: 21px;
+    text-decoration: underline;
+    font-weight: 400;
+}
+
+.text-heading3 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.text-heading4 {
+    color: #E01B84;
+    font-size: 12px;
+}
+
+.text-info {
+    text-decoration: none;
+    text-align: right;
+}
+
+.paragraph-right {
+    text-align: right;
+}

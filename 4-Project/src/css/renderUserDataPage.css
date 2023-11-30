@@ -1,0 +1,48 @@
+.data-element {
+    width: 100%;
+    height: 68px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    background: rgba(66, 187, 203, 0.30);
+    margin-bottom: 8px;
+    line-height: 68px;
+    display: flex;
+    align-items: center;
+}
+
+.user-data-icon {
+    margin: 0 8px 0 0;
+}
+
+.user-data-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user-data-name-wrapper,
+.user-data-date-wrapper {
+    line-height: 1.5;
+}
+
+.user-data-element-name,
+.user-data-element-note,
+.user-data-date-create,
+.user-data-date-change {
+    margin: 0;
+}
+
+.user-data-element-name {
+    overflow: hidden;
+    color: var(--color-black-500);
+    text-overflow: ellipsis;
+    font-size: var(--text-size-l);
+    letter-spacing: 0.15px;
+}
+
+.user-data-element-note,
+.user-data-date-create {
+    color: var(--color-black-400);
+    font-size: var(--text-size-m);
+    letter-spacing: 0.25px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свободная касса</title>
+</head>
+<body>
+    <script>
+        let startAmount = +prompt('Введите количество денег');
+
+        while (isNaN(startAmount) || (startAmount === null) || (startAmount <= 0)) {
+            startAmount = +prompt('Некорректный ввод. Введите количество денег');
+        }
+
+        let balance = startAmount;
+        let cheque = '';
+        let product, price;
+
+        while (balance) {
+            product = prompt('Введите название товара');
+            
+            if (product === null) {
+                alert('Ваши покупки:\r' + cheque + '\rСдача ' + balance);
+                break;
+            }
+
+            price = prompt('Введите стоимость товара');
+
+            if (price === null) {
+                alert('Ваши покупки:\r' + cheque + '\rСдача ' + balance);
+                break;
+            }
+
+            while (isNaN(+price) || (price < 1)) {
+                price = prompt('Некорректный ввод. Введите стоимость товара');
+            }
+
+            if ((balance - price) > 0) {
+                balance -= price;
+                cheque += product + '............' + price + '\r'
+            } else {
+                alert('Сейчас Вы не можете себе это позволить. Выберите другой продукт');
+            }
+
+        }
+    </script>
+</body>
+</html>

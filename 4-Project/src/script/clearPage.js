@@ -1,0 +1,3 @@
+function clearPage () {
+  mainPage.innerHTML = '';
+}

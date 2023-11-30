@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прямая или нет</title>
+</head>
+<body>
+    <script>
+        function isOnOneLine (x1, y1, x2, y2, x3, y3) {
+            const a = (y1 - y2) / (x1 - x2);
+            const b = y2 - a * x2;
+            return y3 === a * x3 + b;
+        }
+    </script>
+</body>
+</html>
