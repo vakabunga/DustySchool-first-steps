@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <title>⭐️ Сокращатель URL</title>
+    <style>
+        .url-cutter-input {
+            width: 50%;
+        }
+
+        .url-cutter-spinner {
+            width: 5%;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="url-cutter">
+        <h1>Хотите вместо длинных ссылок с кучей параметров получить короткую?</h1>
+        <h2> Вставьте ссылку в поле ниже и результат не заставит вас долго ждать</h2>
+        <form class="url-cutter-form" action="none">
+            <label for="input-link">
+                <input class="url-cutter-input" name="input-link" type="text" placeholder="Вставьте ссылку">
+            </label>
+            <button class="url-cutter-button">Отправить</button>
+            <img class="url-cutter-spinner hidden" src="./data/cut-it-out-scissors.gif" alt="">
+        </form>
+        <p class="url-cutter-result"> </p>
+        <p class="url-cutter-result-status"> </p>
+    </div>
+    <script>
+        const urlCutterForm = document.querySelector('.url-cutter-form');
+        const urlCutterInput = document.querySelector('.url-cutter-input');
+        const urlCutterButton = document.querySelector('.url-cutter-button');
+        const urlCutterResult = document.querySelector('.url-cutter-result');
+        const urlCutterResultStatus = document.querySelector('.url-cutter-result-status');
+        const urlCutterSpinner = document.querySelector('.url-cutter-spinner');
+
+        urlCutterForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            urlCutterButton.disable = true;
+            urlCutterResultStatus.textContent = 'Ваш запрос обрабатывается';
+            urlCutterSpinner.classList.remove('hidden');
+
+            fetch(`https://is.gd/create.php?format=json&url=${urlCutterInput.value}`)
+                .then(response => response.json())
+                .then(async (data) => {
+                    if (data.errorcode) {
+                        throw new Error(data.errorcode);
+                    }
+                    urlCutterResult.textContent = 'Ваша короткая ссылка: ' + data.shorturl;
+                    await navigator.clipboard.writeText(data.shorturl);
+                    urlCutterResultStatus.textContent = 'Ссылка скопирована в буфер обмена';
+                })
+                .catch((error) => {
+                    const errorcode = error.message;
+
+                    if (errorcode === '1' || errorcode === '2' || errorcode === '3') {
+                        urlCutterResultStatus.textContent = 'Пожалуйста, введите корректный url-адрес';
+                    } else {
+                        urlCutterResultStatus.textContent = 'Проблемы с сервисом, попробуйте позже';
+                    }
+                })
+                .finally(() => {
+                    urlCutterButton.disable = false;
+                    urlCutterSpinner.classList.add('hidden');
+                    urlCutterInput.value = '';
+                })
+        })
+    </script>
+</body>
+
+</html>
