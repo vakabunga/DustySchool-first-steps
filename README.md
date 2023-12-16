@@ -2,4 +2,4 @@
 
 GitPages
 
-https://vakabunga.github.io/DustySchool/
+https://vakabunga.github.io/DustySchool-first-steps/
