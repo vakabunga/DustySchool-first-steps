@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <script src="https://kit.fontawesome.com/58b559da9d.js" crossorigin="anonymous"></script>
     <title>Сложные вычисления</title>
 </head>
 
@@ -18,7 +19,8 @@
         <label for="summand2">
             <input class="summand" type="text" name="summand" id="summand2" placeholder="Введите число">
         </label>
-        <button>Сложить</button>
+        <button class="sum-submit-button">Сложить</button>
+        <i class="fa-solid fa-arrows-rotate fa-spin hidden"></i>
     </form>
     <p class="answer"></p>
 
@@ -26,6 +28,8 @@
         const form = document.querySelector('.form');
         const summand = document.querySelectorAll('.summand');
         const answer = document.querySelector('.answer');
+        const sumSubmitButton = document.querySelector('.sum-submit-button');
+        const rotateArrows = document.querySelector('.fa-arrows-rotate');
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -38,6 +42,8 @@
             fetch(`http://localhost:3000/?first=${summands[0]}&second=${summands[1]}`)
                 .then(response => response.json())
                 .then((data) => {
+                    sumSubmitButton.disabled = true;
+                    rotateArrows.classList.remove('hidden');
                     if (data.result === null) {
                         throw new Error('Введите корректные числа');
                     }
@@ -47,9 +53,13 @@
                     if (error.message === 'Unexpected end of JSON input') {
                         answer.textContent = 'Введите числа';
                     } else {
-                        answer.textContent = error.message;
+                        answer.textContent = 'Проблемы с сервером, попробуйте позже ' + error.message;
                     }
-                });
+                })
+                .finally(() => {
+                    sumSubmitButton.disabled = false;
+                    rotateArrows.classList.add('hidden');
+                })
         });
     </script>
 </body>
