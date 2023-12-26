@@ -40,42 +40,49 @@
         const urlCutterResultStatus = document.querySelector('.url-cutter-result-status');
         const urlCutterSpinner = document.querySelector('.url-cutter-spinner');
 
+        function cutUrlRequest(url) {
+            return fetch(`https://is.gd/create.php?format=json&url=${url}`);
+        }
+
+        async function cutUrlRequestHandler() {
+            try {
+                const response = await cutUrlRequest(urlCutterInput.value);
+                const data = await response.json();
+
+                urlCutterResultStatus.textContent = '';
+                urlCutterResult.textContent = '';
+
+                if (data.errorcode) {
+                    throw new Error('Something went wrong', { cause: data });
+                }
+
+                urlCutterResult.textContent = 'Ваша короткая ссылка: ' + data.shorturl;
+                await navigator.clipboard.writeText(data.shorturl);
+                urlCutterResultStatus.textContent = 'Ссылка скопирована в буфер обмена';
+
+            } catch (error) {
+                const errorcode = error.cause.errorcode;
+                const errormessage = error.cause.errormessage;
+
+                if (errorcode === 1 || errorcode === 2 || errorcode === 3) {
+                    urlCutterResultStatus.textContent = 'Пожалуйста, введите корректный url-адрес: ' + errormessage;
+                } else {
+                    urlCutterResultStatus.textContent = 'Проблемы с сервисом, попробуйте позже: ' + errormessage;
+                }
+            } finally {
+                urlCutterButton.disable = false;
+                urlCutterSpinner.classList.add('hidden');
+                urlCutterInput.value = '';
+            }
+        }
+
         urlCutterForm.addEventListener('submit', (event) => {
             event.preventDefault();
             urlCutterButton.disable = true;
             urlCutterResultStatus.textContent = 'Ваш запрос обрабатывается';
             urlCutterSpinner.classList.remove('hidden');
 
-            fetch(`https://is.gd/create.php?format=json&url=${urlCutterInput.value}`)
-                .then(response => response.json())
-                .then((data) => {
-                    urlCutterResultStatus.textContent = '';
-                    urlCutterResult.textContent = '';
-
-                    if (data.errorcode) {
-                        throw new Error(data.errorcode);
-                    }
-
-                    urlCutterResult.textContent = 'Ваша короткая ссылка: ' + data.shorturl;
-                    return navigator.clipboard.writeText(data.shorturl);
-                })
-                .then(() => {
-                    urlCutterResultStatus.textContent = 'Ссылка скопирована в буфер обмена';
-                })
-                .catch((error) => {
-                    const errorcode = error.message;
-
-                    if (errorcode === '1' || errorcode === '2' || errorcode === '3') {
-                        urlCutterResultStatus.textContent = 'Пожалуйста, введите корректный url-адрес';
-                    } else {
-                        urlCutterResultStatus.textContent = 'Проблемы с сервисом, попробуйте позже';
-                    }
-                })
-                .finally(() => {
-                    urlCutterButton.disable = false;
-                    urlCutterSpinner.classList.add('hidden');
-                    urlCutterInput.value = '';
-                })
+            cutUrlRequestHandler();
         })
     </script>
 </body>
