@@ -40,13 +40,13 @@
         const urlCutterResultStatus = document.querySelector('.url-cutter-result-status');
         const urlCutterSpinner = document.querySelector('.url-cutter-spinner');
 
-        function cutUrlRequest(url) {
-            return fetch(`https://is.gd/create.php?format=json&url=${url}`);
-        }
+        // function cutUrlRequest(url) {
+        //     return fetch(`https://is.gd/create.php?format=json&url=${urlCutterInput.value}`);
+        // }
 
         async function cutUrlRequestHandler() {
             try {
-                const response = await cutUrlRequest(urlCutterInput.value);
+                const response = await fetch(`https://is.gd/create.php?format=json&url=${urlCutterInput.value}`);
                 const data = await response.json();
 
                 urlCutterResultStatus.textContent = '';
